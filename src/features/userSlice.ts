@@ -1,31 +1,47 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../app/store";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export interface User {
-  id: string;
+interface User {
   name: string;
   email: string;
+  login: string;
+  password: string;
+  admin: boolean;
 }
 
-const initialState: Array<User> = [
-  {
-    id: "1",
-    name: "John Doe",
-    email: "john@test.com",
-  },
-];
+interface UserState {
+  users: User[];
+}
 
-export const userSlice = createSlice({
+const initialState: UserState = {
+  users: [],
+};
+
+export const fetchUsers = createAsyncThunk<
+  User[],
+  undefined,
+  { rejectValue: string }
+>("users/fetch", async (_, { rejectWithValue }) => {
+  const res = await fetch("http://localhost:3010/users");
+
+  if (!res.ok) {
+    return rejectWithValue("server error");
+  }
+
+  return res.json();
+});
+
+const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {
-    addUser: (state, action: PayloadAction<User>) => {
-      state.push(action.payload);
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      fetchUsers.fulfilled,
+      (state: UserState, action: PayloadAction<User[]>) => {
+        state.users = action.payload;
+      }
+    );
   },
 });
 
-export const { addUser } = userSlice.actions;
-
-export const userSelector = (state: RootState) => state.users;
 export default userSlice.reducer;
