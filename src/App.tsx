@@ -2,7 +2,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./pages/Main/Main";
 import About from "./pages/About/About";
 import ProductList from "./components/ProductList/ProductList";
+import Authorization from "./pages/Authorization/Authorization";
 import SignIn from "./components/SignIn/SignIn";
+import SignUp from "./components/SignUp/SignUp";
+
 
 function App() {
   const routes = createBrowserRouter([
@@ -19,8 +22,19 @@ function App() {
       element: <ProductList />,
     },
     {
-      path: "/signIn",
-      element: <SignIn />,
+      path: "/authorization",
+      element: <Authorization />,
+      children: [
+        {
+          path: "signIn",
+          element: <SignIn />,
+        },
+        {
+          path: "signUp",
+          element: <SignUp />,
+        },
+      ],
+
     },
   ]);
 

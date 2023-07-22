@@ -4,10 +4,11 @@ import styles from "./signin.module.scss"
 const SignIn: FC = () => {
     return (
         <div className={styles.signin}>
-            <header className={styles.heder}>
-                <div className="logo"></div>
-                
-            </header>
+
+           <h1 className={styles.sign_title}>
+           Sign In 
+           </h1>
+
         </div>
     );
 };
