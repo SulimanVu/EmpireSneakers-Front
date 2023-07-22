@@ -2,12 +2,14 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface GlobalCategories {
   name: string;
+  _id: string;
 }
+
 interface Category {
   _id: string;
   name: string;
   photo: string;
-  globalCategories?: GlobalCategories;
+  globalCategories: GlobalCategories;
 }
 
 interface CategoryState {
@@ -23,7 +25,7 @@ export const fetchCategories = createAsyncThunk<
   undefined,
   { rejectValue: string }
 >("categories/fetch", async (_, { rejectWithValue }) => {
-  const res = await fetch("http://localhost:3010/categories");
+  const res = await fetch(`http://localhost:3010/categories`);
 
   if (!res.ok) {
     return rejectWithValue("server error");

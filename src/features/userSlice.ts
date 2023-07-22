@@ -21,7 +21,7 @@ export const fetchUsers = createAsyncThunk<
   undefined,
   { rejectValue: string }
 >("users/fetch", async (_, { rejectWithValue }) => {
-  const res = await fetch("http://localhost:3010/users");
+  const res = await fetch(`http://localhost:3010/users`);
 
   if (!res.ok) {
     return rejectWithValue("server error");
