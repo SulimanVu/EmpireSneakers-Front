@@ -7,6 +7,7 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import GlobalCategories from "./pages/GlobalCategories/GlobalCategories";
 
+
 function App() {
   const routes = createBrowserRouter([
     {
@@ -34,6 +35,7 @@ function App() {
           element: <SignUp />,
         },
       ],
+
     },
     {
       path: "/Gcategory/:id",
