@@ -5,6 +5,7 @@ import { fetchGlobalCategories } from "../../features/globalCategorySlice";
 import logo from "../../assets/icons/logo.png";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { fetchProducts } from "../../features/productSlice";
 
 const Header: FC = () => {
   const { id } = useParams();
@@ -13,6 +14,10 @@ const Header: FC = () => {
     (state) => state.globalCategory.globalCategories
   );
 
+  const handleSort = () => {
+    dispatch(fetchProducts());
+  };
+  
   useEffect(() => {
     dispatch(fetchGlobalCategories());
   }, [dispatch]);
@@ -27,7 +32,11 @@ const Header: FC = () => {
               key={item._id}
               className={item._id === id ? styles.active : styles.none}
             >
-              <Link className={styles.link} to={`/Gcategory/${item._id}`}>
+              <Link
+                onClick={handleSort}
+                className={styles.link}
+                to={`/Gcategory/${item._id}`}
+              >
                 {item.name}
               </Link>
             </li>
