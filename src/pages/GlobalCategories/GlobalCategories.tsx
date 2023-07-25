@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import filter from "../../assets/icons/filter.svg";
 import { fetchProducts } from "../../features/productSlice";
 import Categories from "../../components/Categories/Categories";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 const GlobalCategories: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -54,15 +55,10 @@ const GlobalCategories: FC = () => {
             ))}
           </ul>
         </aside>
-        <section>
-          {filteredProducts.map((product) => {
-            return (
-              <div key={product._id}>
-                {product.articul}
-                {product.name}
-              </div>
-            );
-          })}
+        <section className={styles.products}>
+          {filteredProducts.map((product) => (
+            <ProductCard key={product._id} {...product} />
+          ))}
         </section>
       </main>
     </div>

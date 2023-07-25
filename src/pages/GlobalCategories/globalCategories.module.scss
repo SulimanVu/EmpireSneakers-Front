@@ -5,10 +5,11 @@ main {
   width: 90%;
   margin: auto;
   aside {
+    width: 15%;
+    margin-right: 20px;
     font-style: italic;
     border: 1px solid $lines;
     border-top: 1px solid transparent;
-    width: 15%;
     .filter {
       font-size: 22px;
       padding: 20px 32px;
@@ -36,5 +37,12 @@ main {
         }
       }
     }
+  }
+  .products {
+    width: 95%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
   }
 }
