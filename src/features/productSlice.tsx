@@ -21,16 +21,19 @@ interface Product {
   articul: number;
   price: number;
   categories: Category[];
+  globalCategory: GlobalCategories;
   comments: string[];
   sizes: [{ size: number; quantity: number }];
 }
 
 interface ProductState {
   products: Product[];
+  sortedProduct: Product[];
 }
 
 const initialState: ProductState = {
   products: [],
+  sortedProduct: [],
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -49,15 +52,23 @@ export const fetchProducts = createAsyncThunk(
 const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    filterProduct(state, action: PayloadAction<string>) {
+      state.sortedProduct = state.products.filter((product) =>
+        product.categories.find((category) => category._id === action.payload)
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchProducts.fulfilled,
       (state: ProductState, action: PayloadAction<Product[]>) => {
         state.products = action.payload;
+        state.sortedProduct = action.payload;
       }
     );
   },
 });
 
+export const { filterProduct } = productSlice.actions;
 export default productSlice.reducer;

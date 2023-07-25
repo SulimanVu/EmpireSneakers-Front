@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import styles from "./globalCategories.module.scss";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
@@ -12,25 +12,23 @@ const GlobalCategories: FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
 
-  const categories = useAppSelector((state) =>
-    state.categoriesSlice.categories.filter(
-      (item) => item.globalCategories._id === id
-    )
-  );
-  const currentCategory = useAppSelector(
-    (state) => state.categoriesSlice.currentCategory
+  const categories = useAppSelector(
+    (state) => state.categoriesSlice.categories
   );
 
-  const products = useAppSelector((state) =>
-    state.productSlice.products.filter((product) =>
-      product.categories.find(
-        (category) => category._id === currentCategory?._id
-      )
-    )
-  );
+  const products = useAppSelector((state) => state.productSlice.sortedProduct);
 
-  console.log(currentCategory);
-  console.log(products);
+  // Фильтрация категорий с помощью useMemo
+  const filteredCategories = useMemo(() => {
+    return categories.filter(
+      (category) => category.globalCategories._id === id
+    );
+  }, [categories, id]);
+
+  // Фильтрация продуктов с помощью useMemo
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => product.globalCategory?._id === id);
+  }, [products, id]);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -47,7 +45,7 @@ const GlobalCategories: FC = () => {
             <img src={filter} alt="filter" />
           </div>
           <ul className={styles.categories}>
-            {categories.map((category) => (
+            {filteredCategories.map((category) => (
               <Categories
                 key={category._id}
                 name={category.name}
@@ -57,7 +55,7 @@ const GlobalCategories: FC = () => {
           </ul>
         </aside>
         <section>
-          {products.map((product) => {
+          {filteredProducts.map((product) => {
             return (
               <div key={product._id}>
                 {product.articul}
