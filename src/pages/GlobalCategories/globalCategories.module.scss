@@ -5,7 +5,8 @@ main {
   width: 90%;
   margin: auto;
   aside {
-    width: 15%;
+    color: $text-silver;
+    height: min-content;
     margin-right: 20px;
     font-style: italic;
     border: 1px solid $lines;
@@ -13,8 +14,12 @@ main {
     .filter {
       font-size: 22px;
       padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid $lines;
       img {
+        margin-left: 100px;
         cursor: pointer;
       }
     }
@@ -23,8 +28,10 @@ main {
       justify-content: space-between;
     }
     .categories {
-      padding: 40px 32px;
+      padding: 0;
+      color: $text-silver;
       li {
+        padding: 0 20px;
         list-style-type: none;
         display: flex;
         justify-content: space-between;
@@ -34,6 +41,68 @@ main {
         }
         &:not(:first-child) {
           margin-top: 18px;
+        }
+      }
+    }
+    .priceSection {
+      display: flex;
+      flex-direction: column;
+      .price {
+        font-size: 22px;
+        padding: 20px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid $lines;
+        border-bottom: 1px solid $lines;
+        cursor: pointer;
+        .norotated {
+          transition: 0.4s;
+        }
+        .rotated {
+          transition: 0.4s;
+          transform: rotate(0.25turn);
+        }
+      }
+      .noslidecontainer {
+        height: 0;
+        transition: 0.5s;
+        opacity: 0;
+        .inputs {
+          opacity: 0;
+          transform: 0.5s;
+        }
+      }
+      .slidecontainer {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        opacity: 1;
+        transition: 0.5s;
+        .inputs {
+          opacity: 1;
+          min-height: 60px;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          padding: 10px 0 10px 10px;
+          div {
+            display: flex;
+            justify-content: flex-start;
+            &:first-child {
+              margin-bottom: 15px;
+            }
+            span {
+              margin-right: 10px;
+            }
+            input {
+              font-style: italic;
+              border: none;
+              border-bottom: 1px solid $lines;
+            }
+          }
         }
       }
     }
