@@ -1,13 +1,22 @@
 import { FC } from "react";
 import rightArrow from "../../assets/icons/rightArrow.svg";
+import { useAppDispatch } from "../../app/hook";
+import { getCurrentCategory } from "../../features/categoriesSlice";
+import styles from "./categories.module.scss"
 
 interface CategoriesProps {
-  id: string;
+  _id: string;
   name: string;
 }
-const Categories: FC<CategoriesProps> = ({ name, id }) => {
+const Categories: FC<CategoriesProps> = ({ name, _id }) => {
+  const dispatch = useAppDispatch();
+
+  const handleSort = () => {
+    dispatch(getCurrentCategory(_id));
+  };
+
   return (
-    <li>
+    <li className={styles.li} onClick={handleSort}>
       <span>{name}</span>
       <img src={rightArrow} alt="arrow" />
     </li>

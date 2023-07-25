@@ -9,7 +9,7 @@ import { fetchProducts } from "../../features/productSlice";
 import Categories from "../../components/Categories/Categories";
 
 const GlobalCategories: FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
 
   const categories = useAppSelector((state) =>
@@ -17,8 +17,20 @@ const GlobalCategories: FC = () => {
       (item) => item.globalCategories._id === id
     )
   );
+  const currentCategory = useAppSelector(
+    (state) => state.categoriesSlice.currentCategory
+  );
 
-  const products = useAppSelector((state) => state.productSlice.products);
+  const products = useAppSelector((state) =>
+    state.productSlice.products.filter((product) =>
+      product.categories.find(
+        (category) => category._id === currentCategory?._id
+      )
+    )
+  );
+
+  console.log(currentCategory);
+  console.log(products);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -36,12 +48,16 @@ const GlobalCategories: FC = () => {
           </div>
           <ul className={styles.categories}>
             {categories.map((category) => (
-              <Categories name={category.name} key={category._id} id={category._id} />
+              <Categories
+                key={category._id}
+                name={category.name}
+                _id={category._id}
+              />
             ))}
           </ul>
         </aside>
         <section>
-          {products?.map((product) => {
+          {products.map((product) => {
             return (
               <div key={product._id}>
                 {product.articul}
