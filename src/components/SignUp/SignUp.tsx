@@ -1,16 +1,41 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from "./signup.module.scss"
+import { useDispatch } from 'react-redux';
+import { authSignUp } from '../../features/applicationSlice';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import SignIn from '../SignIn/SignIn';
 
 const SignUp:FC = () => {
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
+
+    const dispatch = useDispatch()
+    const handleSetName = (e) => {
+        setLogin(e.target.value)
+    }
+    const handleSetPass = (e) => {
+        setPassword(e.target.value)
+    }
+    const navigate = useNavigate()
+    const handleSignUp = (e) => {
+        e.preventDefault()
+        dispatch(authSignUp({login, password}))
+        // navigate("/login")
+    }
     return (
         <div className={styles.signUp}>
               <h1>
-                Sign In
+                Sign UP
             </h1>
             <div className={styles.inputs}>
-               <form>
+               <form onSubmit={handleSignUp}>
                <span>Имя</span>
-                <input type="text" />
+                <input 
+                type="text"
+                value={login}
+                onChange={handleSetName}
+                 />
                 <div className={styles.password}>
                     <span>Пароль</span>
                     <svg width="19" height="16" viewBox="0 0 19 16" fill="none">
@@ -18,10 +43,15 @@ const SignUp:FC = () => {
                     <path d="M18.1206 7.68596C17.5606 6.56591 16.8246 5.55798 15.9127 4.74194L12.9366 7.68596V8.00591C12.9366 10.1339 11.2246 11.8459 9.09661 11.8459H8.77665L6.88867 13.7339C7.59273 13.8779 8.32868 13.9739 9.04868 13.9739C13.0008 13.9739 16.4246 11.6699 18.0727 8.34177C18.2167 8.11771 18.2167 7.8938 18.1206 7.68578L18.1206 7.68596Z" fill="#807D7E" />
                 </svg>
                 </div>
-                <input type="password" />
+                <input 
+                type="password"
+                value={password}
+                onChange={handleSetPass}
+                 />
                 <span className={styles.support}>Забыли пароль?</span>
-                <button>Зарегистрироваться</button>
-                <span className={styles.support_2}>Нет аккаунта? Зарегистрироваться</span>
+                <button type='submit'>Зарегистрироваться</button>
+
+               <Link to = {<SignIn/>}></Link>
                </form>
             </div>
         </div>

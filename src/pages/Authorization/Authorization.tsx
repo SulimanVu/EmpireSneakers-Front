@@ -14,7 +14,7 @@ const Authorization: FC = () => {
           <div className={styles.btn_signUp}>Зарегистрироваться</div>
         </div>
       </header>
-      <SignIn/>
+      {/* <SignIn/> */}
       <SignUp/>
       <Outlet />
     </div>
