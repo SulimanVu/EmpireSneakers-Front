@@ -5,6 +5,7 @@ import ProductList from "./components/ProductList/ProductList";
 import Authorization from "./pages/Authorization/Authorization";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
+import GlobalCategories from "./pages/GlobalCategories/GlobalCategories";
 
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
       ],
 
     },
+    {
+      path: "/Gcategory/:id",
+      element: <GlobalCategories />
+    }
   ]);
 
   return <RouterProvider router={routes} />;
