@@ -58,10 +58,12 @@ export const authSignIn = createAsyncThunk(
                 body:JSON.stringify({login,password})
             })
             const token = await res.json()
+            console.log(token);
+            
             if(token.error) {
                 return thunkAPI.rejectWithValue(token.error)
             }
-            localStorage.setItem("token", token)
+            localStorage.setItem("token", token.token)
             return token
         } catch (error) {
             thunkAPI.rejectWithValue(error);
