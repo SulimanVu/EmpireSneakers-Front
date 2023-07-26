@@ -21,7 +21,7 @@ const SignUp:FC = () => {
     const handleSignUp = (e) => {
         e.preventDefault()
         dispatch(authSignUp({login, password}))
-        // navigate("/login")
+        navigate("/authorization/signIn")
     }
     return (
          <div className={styles.signUp}>
@@ -45,9 +45,7 @@ const SignUp:FC = () => {
                     </div>
                     <input type="password" value={password} onChange={handleSetPass} />
                     <span className={styles.support}>Забыли пароль?</span>
-                    <Link to={`/authorization/signIn`}>
-                    <button>Зарегистрироваться</button>
-              </Link>
+                    <button type='submit'>Зарегистрироваться</button>
                     <span className={styles.support_2}>
                     Есть аккаунт? Войти 
                         </span>

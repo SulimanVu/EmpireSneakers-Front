@@ -63,7 +63,7 @@ export const authSignIn = createAsyncThunk(
             if(token.error) {
                 return thunkAPI.rejectWithValue(token.error)
             }
-            localStorage.setItem("token", token.token)
+            localStorage.setItem("token", token)
             return token
         } catch (error) {
             thunkAPI.rejectWithValue(error);

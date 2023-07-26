@@ -25,7 +25,7 @@ const SignIn: FC = () => {
     const handleSignIn = (e:ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         dispatch(authSignIn({login,password}))
-        // navigate('/signIn')
+        navigate('/')
     }
   
     if(error) {
@@ -58,9 +58,7 @@ const SignIn: FC = () => {
                  />
                 <span className={styles.support}>Забыли пароль?</span>
                
-                <Link to={`/`}>
                 <button type='submit'>Войти</button>
-              </Link>
               
               <span className={styles.support_2}>Нет аккаунта? Зарегистрироваться</span>
                </form>
