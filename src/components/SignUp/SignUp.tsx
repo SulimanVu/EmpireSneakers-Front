@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SignIn from '../SignIn/SignIn';
 
-const SignUp:FC = () => {
+const SignUp: FC = () => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
@@ -20,11 +20,11 @@ const SignUp:FC = () => {
     const navigate = useNavigate()
     const handleSignUp = (e) => {
         e.preventDefault()
-        dispatch(authSignUp({login, password}))
+        dispatch(authSignUp({ login, password }))
         navigate("/authorization/signIn")
     }
     return (
-         <div className={styles.signUp}>
+        <div className={styles.signUp}>
             <h1>
                 Sign Up
             </h1>
@@ -47,8 +47,8 @@ const SignUp:FC = () => {
                     <span className={styles.support}>Забыли пароль?</span>
                     <button type='submit'>Зарегистрироваться</button>
                     <span className={styles.support_2}>
-                    Есть аккаунт? Войти 
-                        </span>
+                        Есть аккаунт? Войти
+                    </span>
                 </form>
             </div>
         </div>
