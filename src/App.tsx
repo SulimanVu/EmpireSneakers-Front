@@ -6,6 +6,7 @@ import Authorization from "./pages/Authorization/Authorization";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import GlobalCategories from "./pages/GlobalCategories/GlobalCategories";
+import Profile from "./components/Profile/Profile";
 
 
 function App() {
@@ -40,6 +41,10 @@ function App() {
     {
       path: "/Gcategory/:id",
       element: <GlobalCategories />
+    },
+    {
+      path:"/Profile",
+      element:<Profile/>
     }
   ]);
 

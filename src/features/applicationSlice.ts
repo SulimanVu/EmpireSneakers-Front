@@ -1,29 +1,47 @@
-import { authSignUp, authSignIn } from "./applicationSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// Определяем тип для состояния users
+export function parseJwt(token) {
+  if (token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      window.atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  }
+  return null;
+}
+
 interface Users {
+  login: string;
+  password: string;
+  name: string;
+}
+
+interface UsersState {
+  users: Users[];
   error: null;
   signIn: boolean;
   signUp: boolean;
   token: string | null;
-}
-
-// Определяем тип для начального состояния
-interface UsersState {
-  users: Users[];
-  error: null;
+  userId: string | null;
 }
 
 const initialState: UsersState = {
-  users: [
-    {
-      error: null,
-      signIn: false,
-      signUp: false,
-      token: localStorage.getItem("token"),
-    },
-  ],
+  users: [],
+  error: null,
+  signIn: false,
+  signUp: false,
+  token: localStorage.getItem("token"),
+  userId: localStorage.getItem("token")
+    ? parseJwt(localStorage.getItem("token"))?.id
+    : null,
 };
 
 export const authSignUp = createAsyncThunk(
@@ -44,7 +62,7 @@ export const authSignUp = createAsyncThunk(
       }
       return json;
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -67,9 +85,11 @@ export const authSignIn = createAsyncThunk(
         return thunkAPI.rejectWithValue(token.error);
       }
       localStorage.setItem("token", token);
-      return token;
+      const decodedToken = parseJwt(token);
+      const userId = decodedToken ? decodedToken.id : null;
+      return { token, userId };
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -104,6 +124,7 @@ const applicationSlice = createSlice({
         state.authSignIn = false;
         state.error = null;
         state.token = action.payload.token;
+        state.userId = action.payload.userId;
       });
   },
 });

@@ -3,12 +3,14 @@ import styles from "./header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { fetchGlobalCategories } from "../../features/globalCategorySlice";
 import logo from "../../assets/icons/logo.png";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../features/productSlice";
 
 const Header: FC = () => {
   const { id } = useParams();
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const globalCategories = useAppSelector(
     (state) => state.globalCategory.globalCategories
@@ -22,6 +24,11 @@ const Header: FC = () => {
     dispatch(fetchGlobalCategories());
   }, [dispatch]);
 
+const handleClick = () => {
+
+!token ? navigate('/authorization/signup'):navigate('/Profile')
+
+}
   return (
     <div className={styles.header}>
       <header>
@@ -67,7 +74,7 @@ const Header: FC = () => {
               />
             </svg>
           </button>
-          <button>
+          <button onClick={handleClick}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M9.99967 11.6668C12.3009 11.6668 14.1663 9.80135 14.1663 7.50016C14.1663 5.19898 12.3009 3.3335 9.99967 3.3335C7.69849 3.3335 5.83301 5.19898 5.83301 7.50016C5.83301 9.80135 7.69849 11.6668 9.99967 11.6668ZM9.99967 11.6668C6.31778 11.6668 3.33301 13.9054 3.33301 16.6668M9.99967 11.6668C13.6816 11.6668 16.6663 13.9054 16.6663 16.6668"
