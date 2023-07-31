@@ -42,11 +42,11 @@ const GlobalCategories: FC = () => {
   const products = useAppSelector((state) => state.productSlice.sortedProduct);
 
   // Фильтрация категорий с помощью useMemo
-  const filteredCategories = useMemo(() => {
-    return categories.filter(
-      (category) => category.globalCategories._id === id
-    );
-  }, [categories, id]);
+  // const filteredCategories = useMemo(() => {
+  //   return categories.filter(
+  //     (category) => category.globalCategories._id === id
+  //   );
+  // }, [categories, id]);
 
   // Фильтрация продуктов с помощью useMemo
   const filteredProducts = useMemo(() => {
@@ -68,7 +68,7 @@ const GlobalCategories: FC = () => {
             <img src={filter} alt="filter" />
           </div>
           <ul className={styles.categories}>
-            {filteredCategories.map((category) => (
+            {categories.map((category) => (
               <Categories
                 key={category._id}
                 name={category.name}
@@ -120,9 +120,13 @@ const GlobalCategories: FC = () => {
           </div>
         </aside>
         <section className={styles.products}>
-          {filteredProducts.map((product) => (
-            <ProductCard key={product._id} {...product} />
-          ))}
+          {filteredProducts.length !== 0 ? (
+            filteredProducts.map((product) => (
+              <ProductCard key={product._id} {...product} />
+            ))
+          ) : (
+            <div>Нет в наличии</div>
+          )}
         </section>
       </main>
     </div>

@@ -29,11 +29,13 @@ interface Product {
 interface ProductState {
   products: Product[];
   sortedProduct: Product[];
+  currentCategory: string;
 }
 
 const initialState: ProductState = {
   products: [],
   sortedProduct: [],
+  currentCategory: "",
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -57,6 +59,7 @@ const productSlice = createSlice({
       state.sortedProduct = state.products.filter((product) =>
         product.categories.find((category) => category._id === action.payload)
       );
+      state.currentCategory = action.payload;
     },
   },
   extraReducers: (builder) => {
