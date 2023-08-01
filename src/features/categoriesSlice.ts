@@ -1,25 +1,17 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface GlobalCategories {
-  name: string;
-  _id: string;
-}
-
 export interface Category {
   _id: string;
   name: string;
   photo: string;
-  globalCategories: GlobalCategories;
 }
 
 interface CategoryState {
   categories: Category[];
-  currentCategory: Category | null;
 }
 
 const initialState: CategoryState = {
   categories: [],
-  currentCategory: null,
 };
 
 export const fetchCategories = createAsyncThunk<
@@ -61,12 +53,6 @@ const categoriesSlice = createSlice({
           state.categories = action.payload;
         }
       )
-      .addCase(
-        getCurrentCategory.fulfilled,
-        (state: CategoryState, action: PayloadAction<Category>) => {
-          state.currentCategory = action.payload;
-        }
-      );
   },
 });
 
