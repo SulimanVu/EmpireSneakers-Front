@@ -9,8 +9,7 @@ import { fetchProducts } from "../../features/productSlice";
 
 const Header: FC = () => {
   const { id } = useParams();
-  const token = localStorage.getItem("token");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const globalCategories = useAppSelector(
     (state) => state.globalCategory.globalCategories
@@ -19,16 +18,16 @@ const Header: FC = () => {
   const handleSort = () => {
     dispatch(fetchProducts());
   };
-  
+
   useEffect(() => {
     dispatch(fetchGlobalCategories());
   }, [dispatch]);
 
-const handleClick = () => {
+  const handleClick = () => {
+    const token = localStorage.getItem("token");
+    !token ? navigate("/authorization/signup") : navigate("/Profile");
+  };
 
-!token ? navigate('/authorization/signup'):navigate('/Profile')
-
-}
   return (
     <div className={styles.header}>
       <header>

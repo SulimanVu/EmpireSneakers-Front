@@ -8,7 +8,6 @@ import SignUp from "./components/SignUp/SignUp";
 import GlobalCategories from "./pages/GlobalCategories/GlobalCategories";
 import Profile from "./components/Profile/Profile";
 
-
 function App() {
   const routes = createBrowserRouter([
     {
@@ -36,16 +35,15 @@ function App() {
           element: <SignUp />,
         },
       ],
-
     },
     {
       path: "/Gcategory/:id",
-      element: <GlobalCategories />
+      element: <GlobalCategories />,
     },
     {
-      path:"/Profile",
-      element:<Profile/>
-    }
+      path: "/Profile",
+      element: <Profile />,
+    },
   ]);
 
   return <RouterProvider router={routes} />;
