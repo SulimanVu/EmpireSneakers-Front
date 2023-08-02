@@ -1,5 +1,4 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { serverUrl } from "../serverUrl";
 
 interface JwtParse {
   id: string;
@@ -56,7 +55,7 @@ export const authSignUp = createAsyncThunk<
   { login: string; password: string }
 >("auth/signup", async ({ login, password }, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${serverUrl}/users/signUp`, {
+    const res = await fetch(`http://localhost:3010/users/signUp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +78,7 @@ export const authSignIn = createAsyncThunk<
   Users
 >("auth/signin", async ({ login, password }, { rejectWithValue }) => {
   try {
-    const res = await fetch("${serverUrl}/users/signIn", {
+    const res = await fetch("http://localhost:3010/users/signIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

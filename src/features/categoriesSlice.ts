@@ -1,5 +1,4 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { serverUrl } from "../serverUrl";
 
 export interface Category {
   _id: string;
@@ -18,7 +17,7 @@ const initialState: CategoryState = {
 export const fetchCategories = createAsyncThunk<Category[], undefined>(
   "categories/fetch",
   async (_, { rejectWithValue }) => {
-    const res = await fetch(`${serverUrl}/categories`);
+    const res = await fetch(`http://localhost:3010/categories`);
 
     if (!res.ok) {
       return rejectWithValue("server error");
@@ -31,7 +30,7 @@ export const fetchCategories = createAsyncThunk<Category[], undefined>(
 export const getCurrentCategory = createAsyncThunk<Category, string>(
   "current/category/get",
   async (id, { rejectWithValue }) => {
-    const res = await fetch(`${serverUrl}/categories/${id}`);
+    const res = await fetch(`http://localhost:3010/categories/${id}`);
     if (!res.ok) {
       return rejectWithValue("server error");
     }
