@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export function parseJwt(token) {
+export function parseJwt(token:string) {
   if (token) {
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
       window.atob(base64)
         .split("")
         .map(function (c) {
@@ -22,15 +22,17 @@ interface Users {
   login: string;
   password: string;
   name: string;
+  
 }
 
 interface UsersState {
   users: Users[];
-  error: null;
+  error:string | null;
   signIn: boolean;
   signUp: boolean;
   token: string | null;
   userId: string | null;
+  loading:boolean;
 }
 
 const initialState: UsersState = {
@@ -42,9 +44,16 @@ const initialState: UsersState = {
   userId: localStorage.getItem("token")
     ? parseJwt(localStorage.getItem("token"))?.id
     : null,
+    loading:false,
 };
 
-export const authSignUp = createAsyncThunk(
+
+
+
+export const authSignUp = createAsyncThunk<
+Users[],
+{ login: string; password: string }
+>(
   "auth/signup",
   async ({ login, password }, thunkAPI) => {
     try {
@@ -67,7 +76,10 @@ export const authSignUp = createAsyncThunk(
   }
 );
 
-export const authSignIn = createAsyncThunk(
+export const authSignIn = createAsyncThunk<
+{ token: string; userId: string | null },
+{ login: string; password: string }
+>(
   "auth/signin",
   async ({ login, password }, thunkAPI) => {
     try {
@@ -78,8 +90,7 @@ export const authSignIn = createAsyncThunk(
         },
         body: JSON.stringify({ login, password }),
       });
-      const token = await res.json();
-      console.log(token);
+      const token = await res.json() as string;
 
       if (token.error) {
         return thunkAPI.rejectWithValue(token.error);
@@ -101,30 +112,38 @@ const applicationSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(authSignUp.pending, (state) => {
-        state.authSignUp = true;
+        state.authSignUp = false;
         state.error = null;
+        state.loading = true
       })
       .addCase(authSignUp.rejected, (state, action) => {
         state.authSignUp = false;
         state.error = action.payload;
+        state.loading = false
       })
-      .addCase(authSignUp.fulfilled, (state) => {
-        state.authSignUp = false;
+      .addCase(authSignUp.fulfilled, (state:UsersState) => {
+        state.authSignUp = true;
         state.error = null;
+        state.loading = false;
       })
       .addCase(authSignIn.pending, (state) => {
-        state.authSignIn = true;
+        state.authSignIn = false;
         state.error = null;
+        state.loading = true
       })
       .addCase(authSignIn.rejected, (state, action) => {
         state.authSignIn = false;
         state.error = action.payload;
+        state.loading = false
       })
-      .addCase(authSignIn.fulfilled, (state, action) => {
-        state.authSignIn = false;
+      .addCase(authSignIn.fulfilled, (state, action: PayloadAction<{ token: string; userId: string | null }>) => {
+        state.authSignIn = true;
         state.error = null;
         state.token = action.payload.token;
         state.userId = action.payload.userId;
+        state.loading = false
+        console.log(action.userId);
+        
       });
   },
 });
