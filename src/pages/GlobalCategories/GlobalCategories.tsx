@@ -17,7 +17,7 @@ const GlobalCategories: FC = () => {
   const [priceDrop, setPriceDrop] = useState(false);
   const [priceMinValue, setPriceMinValue] = useState<number>(10);
   const [priceMaxValue, setPriceMaxValue] = useState<number>(10000);
-  const [colorDrop, setColorDrop] = useState(false);
+  // const [colorDrop, setColorDrop] = useState(false);
 
   const handlePriceMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (+priceMinValue < 100) {
@@ -40,13 +40,6 @@ const GlobalCategories: FC = () => {
   );
 
   const products = useAppSelector((state) => state.productSlice.sortedProduct);
-
-  // Фильтрация категорий с помощью useMemo
-  // const filteredCategories = useMemo(() => {
-  //   return categories.filter(
-  //     (category) => category.globalCategories._id === id
-  //   );
-  // }, [categories, id]);
 
   // Фильтрация продуктов с помощью useMemo
   const filteredProducts = useMemo(() => {

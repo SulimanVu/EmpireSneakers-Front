@@ -6,6 +6,7 @@ interface ProductCardProps {
   name: string;
   title: string;
   price: number;
+  photo: string;
 }
 
 const ProductCard: FC<ProductCardProps> = ({ name, title, price }) => {
