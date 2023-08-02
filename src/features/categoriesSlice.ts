@@ -1,3 +1,4 @@
+import { Token } from './categoriesSlice';
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Category {
@@ -5,6 +6,7 @@ export interface Category {
   name: string;
   photo: string;
 }
+
 
 interface CategoryState {
   categories: Category[];
@@ -51,6 +53,8 @@ const categoriesSlice = createSlice({
         fetchCategories.fulfilled,
         (state: CategoryState, action: PayloadAction<Category[]>) => {
           state.categories = action.payload;
+          console.log(state.categories);
+          
         }
       )
   },
