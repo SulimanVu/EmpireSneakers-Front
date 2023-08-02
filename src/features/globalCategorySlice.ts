@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { serverUrl } from "../serverUrl";
 
 export interface GlobalCategories {
   name: string;
@@ -22,7 +23,7 @@ export const fetchGlobalCategories = createAsyncThunk<
   undefined,
   { rejectValue: string }
 >("global/fetch", async (_, { rejectWithValue }) => {
-  const res = await fetch(`http://localhost:3010/globalCategories`);
+  const res = await fetch(`${serverUrl}/globalCategories`);
 
   if (!res.ok) {
     return rejectWithValue("server error");
