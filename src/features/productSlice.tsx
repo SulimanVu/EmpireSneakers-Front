@@ -1,7 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Category } from "./categoriesSlice";
 import { GlobalCategories } from "./globalCategorySlice";
-import { serverUrl } from "../serverUrl";
 
 interface Product {
   _id: string;
@@ -32,7 +31,7 @@ const initialState: ProductState = {
 export const fetchProducts = createAsyncThunk(
   "products/fetch",
   async (_, { rejectWithValue }) => {
-    const res = await fetch(`${serverUrl}/product`);
+    const res = await fetch(`http://localhost:3010/product`);
 
     if (!res.ok) {
       return rejectWithValue("server error");
