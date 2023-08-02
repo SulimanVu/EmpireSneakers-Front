@@ -1,16 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-interface GlobalCategories {
-  name: string;
-  _id: string;
-}
-
-interface Category {
-  _id: string;
-  name: string;
-  photo: string;
-  globalCategories: GlobalCategories;
-}
+import { Category } from "./categoriesSlice";
+import { GlobalCategories } from "./globalCategorySlice";
 
 interface Product {
   _id: string;
