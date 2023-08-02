@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { serverUrl } from "../serverUrl";
 
 interface User {
   _id: string;
@@ -22,7 +23,7 @@ export const fetchUsers = createAsyncThunk<
   undefined,
   { rejectValue: string }
 >("users/fetch", async (_, { rejectWithValue }) => {
-  const res = await fetch(`http://localhost:3010/users`);
+  const res = await fetch(`${serverUrl}/users`);
 
   if (!res.ok) {
     return rejectWithValue("server error");
