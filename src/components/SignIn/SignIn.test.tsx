@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import SignIn from "./SignIn";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
