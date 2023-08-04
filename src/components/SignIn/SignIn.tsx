@@ -38,17 +38,29 @@ const SignIn: FC = () => {
     <div className={styles.signIn}>
       <h1>Sign In</h1>
       <div className={styles.inputs}>
-        <form onSubmit={handleSignIn}>
+        <form data-testid="form" onSubmit={handleSignIn}>
           <span>Имя</span>
-          <input type="text" value={login} onChange={handleSetName} />
+            <input
+              data-testid="login"
+              type="text"
+              value={login}
+              onChange={handleSetName}
+            />
           <div className={styles.password}>
             <span>Пароль</span>
             <img src={eye} alt="eyeSvg" />
           </div>
-          <input type="password" value={password} onChange={handleSetPass} />
+          <input
+            data-testid="password"
+            type="password"
+            value={password}
+            onChange={handleSetPass}
+          />
           <span className={styles.support}>Забыли пароль?</span>
 
-          <button type="submit">Войти</button>
+          <button data-testid="submit" type="submit">
+            Войти
+          </button>
 
           <span className={styles.support_2}>
             Нет аккаунта? Зарегистрироваться

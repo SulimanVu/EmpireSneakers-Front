@@ -11,6 +11,7 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
+    project: 'tsconfig.json',
     ecmaVersion: "latest",
     sourceType: "module",
     project: true,
@@ -24,5 +25,5 @@ module.exports = {
     ],
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-floating-promises": "off",
-  },
+  }
 };
