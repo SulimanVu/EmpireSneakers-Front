@@ -5,7 +5,7 @@ import { fetchGlobalCategories } from "../../features/globalCategorySlice";
 import logo from "../../assets/icons/logo.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { fetchProducts } from "../../features/productSlice";
+import { fetchProducts, filterProduct } from "../../features/productSlice";
 
 const Header: FC = () => {
   const { id } = useParams();
@@ -18,6 +18,7 @@ const Header: FC = () => {
 
   const handleSort = () => {
     dispatch(fetchProducts());
+    dispatch(filterProduct(""));
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

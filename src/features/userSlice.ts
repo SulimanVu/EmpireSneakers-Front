@@ -13,12 +13,21 @@ interface User {
 
 interface UserState {
   users: User[];
-  user: User | null;
+  user: User;
 }
 
 const initialState: UserState = {
   users: [],
-  user: null,
+  user: {
+    _id: "",
+    name: "",
+    email: "",
+    phone: "",
+    avatar: "",
+    login: "",
+    password: "",
+    admin: false,
+  },
 };
 
 export const fetchUsers = createAsyncThunk<

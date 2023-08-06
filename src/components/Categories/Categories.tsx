@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import rightArrow from "../../assets/icons/rightArrow.svg";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import styles from "./categories.module.scss";
@@ -18,7 +18,7 @@ const Categories: FC<CategoriesProps> = ({ name, _id }) => {
   const handleSort = () => {
     dispatch(filterProduct(_id));
   };
-
+  
   return (
     <li
       className={`${category == _id ? styles.active : styles.li}`}
