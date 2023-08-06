@@ -71,6 +71,15 @@
           }
         }
       }
+      .active {
+        background-color: $third;
+        svg {
+          path {
+            transition: 0.6s;
+            stroke: $secondary;
+          }
+        }
+      }
     }
   }
 }

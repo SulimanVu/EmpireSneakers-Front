@@ -6,6 +6,9 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import GlobalCategories from "./pages/GlobalCategories/GlobalCategories";
 import Profile from "./components/Profile/Profile";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import Favorites from "./components/Favorites/Favorites";
+import Basket from "./components/Basket/Basket";
 
 function App() {
   const routes = createBrowserRouter([
@@ -32,12 +35,26 @@ function App() {
       ],
     },
     {
-      path: "/Gcategory/:id",
-      element: <GlobalCategories />,
+      path: "/my_accaunt",
+      element: <ProfilePage />,
+      children: [
+        {
+          path: "personal_info",
+          element: <Profile />,
+        },
+        {
+          path: "favorites",
+          element: <Favorites />,
+        },
+        {
+          path: "basket",
+          element: <Basket />,
+        },
+      ],
     },
     {
-      path: "/Profile",
-      element: <Profile />,
+      path: "/Gcategory/:id",
+      element: <GlobalCategories />,
     },
   ]);
 

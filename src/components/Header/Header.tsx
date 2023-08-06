@@ -3,12 +3,13 @@ import styles from "./header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { fetchGlobalCategories } from "../../features/globalCategorySlice";
 import logo from "../../assets/icons/logo.png";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../features/productSlice";
 
 const Header: FC = () => {
   const { id } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const globalCategories = useAppSelector(
@@ -19,14 +20,18 @@ const Header: FC = () => {
     dispatch(fetchProducts());
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const token = localStorage.getItem("token");
+    !token
+      ? navigate("/authorization/signup")
+      : navigate("/my_accaunt/" + e.currentTarget.name);
+  };
+
   useEffect(() => {
     dispatch(fetchGlobalCategories());
   }, [dispatch]);
 
-  const handleClick = () => {
-    const token = localStorage.getItem("token");
-    !token ? navigate("/authorization/signup") : navigate("/Profile");
-  };
+  const path: string[] = location.pathname.split("/");
 
   return (
     <div className={styles.header}>
@@ -60,7 +65,11 @@ const Header: FC = () => {
         </div>
 
         <div className={styles.buttons}>
-          <button>
+          <button
+            onClick={handleClick}
+            name="favorites"
+            className={path.includes("favorites") ? styles.active : styles.none}
+          >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 fillRule="evenodd"
@@ -73,7 +82,13 @@ const Header: FC = () => {
               />
             </svg>
           </button>
-          <button onClick={handleClick}>
+          <button
+            onClick={handleClick}
+            name="personal_info"
+            className={
+              path.includes("personal_info") ? styles.active : styles.none
+            }
+          >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M9.99967 11.6668C12.3009 11.6668 14.1663 9.80135 14.1663 7.50016C14.1663 5.19898 12.3009 3.3335 9.99967 3.3335C7.69849 3.3335 5.83301 5.19898 5.83301 7.50016C5.83301 9.80135 7.69849 11.6668 9.99967 11.6668ZM9.99967 11.6668C6.31778 11.6668 3.33301 13.9054 3.33301 16.6668M9.99967 11.6668C13.6816 11.6668 16.6663 13.9054 16.6663 16.6668"
@@ -83,7 +98,11 @@ const Header: FC = () => {
               />
             </svg>
           </button>
-          <button>
+          <button
+            onClick={handleClick}
+            name="basket"
+            className={path.includes("basket") ? styles.active : styles.none}
+          >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M2.5 3.3335H3.00526C3.85578 3.3335 4.56986 3.97391 4.6621 4.81942L5.3379 11.0142C5.43014 11.8597 6.14422 12.5002 6.99474 12.5002H14.205C14.9669 12.5002 15.6317 11.9836 15.82 11.2453L16.9699 6.73609C17.2387 5.68228 16.4425 4.65757 15.355 4.65757H5.5M5.52063 15.5209H6.14563M5.52063 16.1459H6.14563M14.6873 15.5209H15.3123M14.6873 16.1459H15.3123M6.66667 15.8335C6.66667 16.2937 6.29357 16.6668 5.83333 16.6668C5.3731 16.6668 5 16.2937 5 15.8335C5 15.3733 5.3731 15.0002 5.83333 15.0002C6.29357 15.0002 6.66667 15.3733 6.66667 15.8335ZM15.8333 15.8335C15.8333 16.2937 15.4602 16.6668 15 16.6668C14.5398 16.6668 14.1667 16.2937 14.1667 15.8335C14.1667 15.3733 14.5398 15.0002 15 15.0002C15.4602 15.0002 15.8333 15.3733 15.8333 15.8335Z"
