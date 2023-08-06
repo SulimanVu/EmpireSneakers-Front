@@ -1,0 +1,52 @@
+@import "../../index.module.scss";
+
+.profile {
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .inputsBlock {
+    width: 60%;
+    .input {
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid $lines;
+      margin-bottom: 15px;
+      div {
+        display: flex;
+        flex-direction: column;
+        span {
+          color: $text-silver;
+          font-style: italic;
+        }
+        input {
+          margin-top: 10px;
+          border: none;
+          outline: none;
+          background-color: transparent;
+        }
+      }
+      button {
+        align-self: flex-end;
+        cursor: pointer;
+        background-color: transparent;
+      }
+    }
+  }
+}

@@ -1,8 +1,9 @@
 import { FC } from "react";
 import styles from "./authorization.module.scss";
 import { Outlet } from "react-router-dom";
-import logo from "../../acces/icons/logo.png";
+import logo from "../../assets/icons/logo.png";
 import { Link } from "react-router-dom";
+
 const Authorization: FC = () => {
   return (
     <div className={styles.auth}>
