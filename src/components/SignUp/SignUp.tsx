@@ -4,6 +4,7 @@ import { authSignUp } from "../../features/applicationSlice";
 import { useNavigate } from "react-router-dom";
 import eye from "../../assets/icons/eye.png";
 import { useAppDispatch } from "../../app/hook";
+import { Link } from "react-router-dom";
 
 const SignUp: FC = () => {
   const [login, setLogin] = useState("");
@@ -40,7 +41,9 @@ const SignUp: FC = () => {
           <input type="password" value={password} onChange={handleSetPass} />
           <span className={styles.support}>Забыли пароль?</span>
           <button type="submit">Зарегистрироваться</button>
-          <span className={styles.support_2}>Есть аккаунт? Войти</span>
+          <Link to={`/authorization/signIn`}>
+            <span className={styles.support_2}>Есть аккаунт? Войти</span>
+          </Link>
         </form>
       </div>
     </div>

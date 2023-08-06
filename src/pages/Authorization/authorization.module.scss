@@ -1,9 +1,8 @@
 .header {
-    padding: 30px 100px;
+    padding: 10px 100px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #BEBCBD;
-    margin-bottom: 140px;
 }
 
 .signIn_signUp {
@@ -13,13 +12,13 @@
 }
 .btn_signIn {
     margin-right: 20px;
-    padding: 12px 48px 12px 48px;
+    padding: 10px 40px;
     border-radius: 8px;
     background-color: #8A33FD;
     color: #fff;
 }
 .btn_signUp {
-    padding: 12px 48px 12px 48px;
+    padding: 10px 40px;
     border-radius: 8px;
     border: 1px solid #3C4242; 
     color: #8A33FD;
