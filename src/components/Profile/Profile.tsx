@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
-import { fetchUsers, getUser } from "../../features/userSlice";
+import { useState } from "react";
 import styles from "./profile.module.scss";
-import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { useAppSelector } from "../../app/hook";
 import profile from "../../assets/icons/profile.svg";
 
 const Profile = () => {
-  const dispatch = useAppDispatch();
-  const userId: string | null | undefined = useAppSelector(
-    (state) => state.applicationSlice.userId
-  );
   const user = useAppSelector((state) => state.userReducer.user);
 
   const [nameInput, setNameInput] = useState(user?.name);
@@ -16,10 +11,6 @@ const Profile = () => {
   const [phoneInput, setPhoneInput] = useState(user?.phone);
   const [loginInput, setLoginInput] = useState(user?.login);
   const [passwordInput, setPasswordInput] = useState(user?.password);
-
-  useEffect(() => {
-    userId && dispatch(getUser({ id: userId }));
-  }, [dispatch, userId]);
 
   return (
     <div className={styles.profile}>

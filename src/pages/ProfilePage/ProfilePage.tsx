@@ -1,30 +1,37 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styles from "./profilePage.module.scss";
-import { useAppSelector } from "../../app/hook";
+import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import order from "../../assets/icons/order.svg";
 import favorite from "../../assets/icons/heart.svg";
 import profile from "../../assets/icons/profile.svg";
 import signOut from "../../assets/icons/signOut.svg";
+import { getUser } from "../../features/userSlice";
 
 const ProfilePage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const userId = useAppSelector((state) => state.applicationSlice.userId);
-  const user = useAppSelector((state) =>
-    state.userReducer.users.find((user) => user._id === userId)
+  const dispatch = useAppDispatch();
+  const userId: string | null | undefined = useAppSelector(
+    (state) => state.applicationSlice.userId
   );
+  const user = useAppSelector((state) => state.userReducer.user);
   const path: string[] = location.pathname.split("/");
 
   const navigateHandler = (e: React.MouseEvent<HTMLLIElement>) => {
     const navPath: string = e.currentTarget.title;
-    if (navPath === "logOut") {
-      localStorage.removeItem("token");
+    if (navPath == "logOut") {
       navigate("/");
+      localStorage.removeItem("token");
+    } else {
+      navigate("/my_accaunt/" + navPath);
     }
-    navigate("/my_accaunt/" + navPath);
   };
+
+  useEffect(() => {
+    userId && dispatch(getUser({ id: userId }));
+  }, [dispatch, userId]);
 
   return (
     <>
@@ -68,11 +75,7 @@ const ProfilePage: FC = () => {
               </div>
               <span>Мой аккаунт</span>
             </li>
-            <li
-              className={path.includes("logOut") ? styles.active : styles.none}
-              onClick={navigateHandler}
-              title="logOut"
-            >
+            <li onClick={navigateHandler} title="logOut">
               <div>
                 <img src={signOut} alt="logout" />
               </div>
