@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { fetchUsers } from "../../features/userSlice";
+import { fetchUsers, getUser } from "../../features/userSlice";
 import styles from "./profile.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import profile from "../../assets/icons/profile.svg";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
-  const userId = useAppSelector((state) => state.applicationSlice.userId);
-  const user = useAppSelector((state) =>
-    state.userReducer.users.find((user) => user._id === userId)
+  const userId: string | null | undefined = useAppSelector(
+    (state) => state.applicationSlice.userId
   );
+  const user = useAppSelector((state) => state.userReducer.user);
 
   const [nameInput, setNameInput] = useState(user?.name);
   const [emailInput, setEmailInput] = useState(user?.email);
@@ -18,8 +18,8 @@ const Profile = () => {
   const [passwordInput, setPasswordInput] = useState(user?.password);
 
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    userId && dispatch(getUser({ id: userId }));
+  }, [dispatch, userId]);
 
   return (
     <div className={styles.profile}>
