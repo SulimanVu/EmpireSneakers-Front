@@ -13,10 +13,12 @@ interface User {
 
 interface UserState {
   users: User[];
+  user: User | null;
 }
 
 const initialState: UserState = {
   users: [],
+  user: null,
 };
 
 export const fetchUsers = createAsyncThunk<
@@ -32,18 +34,38 @@ export const fetchUsers = createAsyncThunk<
 
   return res.json();
 });
+export const getUser = createAsyncThunk<
+  User,
+  { id: string },
+  { rejectValue: string }
+>("user/get", async ({ id }, { rejectWithValue }) => {
+  const res = await fetch(`http://localhost:3010/users/${id}`);
+
+  if (!res.ok) {
+    return rejectWithValue("server error");
+  }
+
+  return res.json();
+});
 
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      fetchUsers.fulfilled,
-      (state: UserState, action: PayloadAction<User[]>) => {
-        state.users = action.payload;
-      }
-    );
+    builder
+      .addCase(
+        fetchUsers.fulfilled,
+        (state: UserState, action: PayloadAction<User[]>) => {
+          state.users = action.payload;
+        }
+      )
+      .addCase(
+        getUser.fulfilled,
+        (state: UserState, action: PayloadAction<User>) => {
+          state.user = action.payload;
+        }
+      );
   },
 });
 
