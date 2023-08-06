@@ -9,7 +9,9 @@ const Authorization: FC = () => {
     <div className={styles.auth}>
       <header className={styles.header}>
         <div className={styles.logo}>
-          <img src={logo} alt="logo" />
+          <Link to={`/`}>
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
         <div className={styles.signIn_signUp}>
           <Link to={`/authorization/signIn`}>

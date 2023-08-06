@@ -4,6 +4,7 @@ import { authSignIn } from "../../features/applicationSlice";
 import { useNavigate } from "react-router-dom";
 import eye from "../../assets/icons/eye.png";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { Link } from "react-router-dom";
 
 const SignIn: FC = () => {
   const dispatch = useAppDispatch();
@@ -40,12 +41,12 @@ const SignIn: FC = () => {
       <div className={styles.inputs}>
         <form data-testid="form" onSubmit={handleSignIn}>
           <span>Имя</span>
-            <input
-              data-testid="login"
-              type="text"
-              value={login}
-              onChange={handleSetName}
-            />
+          <input
+            data-testid="login"
+            type="text"
+            value={login}
+            onChange={handleSetName}
+          />
           <div className={styles.password}>
             <span>Пароль</span>
             <img src={eye} alt="eyeSvg" />
@@ -62,9 +63,11 @@ const SignIn: FC = () => {
             Войти
           </button>
 
-          <span className={styles.support_2}>
-            Нет аккаунта? Зарегистрироваться
-          </span>
+
+          <Link to={`/authorization/signUp`}>
+            <span className={styles.support_2}>
+              Нет аккаунта? Зарегистрироваться
+            </span>          </Link>
         </form>
       </div>
     </div>
