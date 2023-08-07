@@ -4,7 +4,7 @@ import { useAppSelector } from "../../app/hook";
 import profile from "../../assets/icons/profile.svg";
 
 const Profile = () => {
-  const user = useAppSelector((state) => state.userReducer.user);
+  const user = useAppSelector((state) => state.userSlice.user);
 
   const [nameInput, setNameInput] = useState(user?.name);
   const [emailInput, setEmailInput] = useState(user?.email);

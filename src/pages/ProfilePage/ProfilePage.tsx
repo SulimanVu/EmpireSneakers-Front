@@ -16,7 +16,7 @@ const ProfilePage: FC = () => {
   const userId: string | null | undefined = useAppSelector(
     (state) => state.applicationSlice.userId
   );
-  const user = useAppSelector((state) => state.userReducer.user);
+  const user = useAppSelector((state) => state.userSlice.user);
   const path: string[] = location.pathname.split("/");
 
   const navigateHandler = (e: React.MouseEvent<HTMLLIElement>) => {

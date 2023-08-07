@@ -9,6 +9,7 @@ interface User {
   login: string;
   password: string;
   admin: boolean;
+  favorite: string;
 }
 
 interface UserState {
@@ -27,6 +28,7 @@ const initialState: UserState = {
     login: "",
     password: "",
     admin: false,
+    favorite: "",
   },
 };
 
@@ -43,6 +45,7 @@ export const fetchUsers = createAsyncThunk<
 
   return res.json();
 });
+
 export const getUser = createAsyncThunk<
   User,
   { id: string },
