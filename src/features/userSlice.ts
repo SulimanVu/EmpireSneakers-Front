@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface User {
+export interface User {
   _id: string;
   name: string;
   email: string;
@@ -10,6 +10,7 @@ interface User {
   password: string;
   admin: boolean;
   favorite: string;
+  basket: string;
 }
 
 interface UserState {
@@ -29,6 +30,7 @@ const initialState: UserState = {
     password: "",
     admin: false,
     favorite: "",
+    basket: "",
   },
 };
 

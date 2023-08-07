@@ -21,23 +21,39 @@
     background-color: #fff;
   }
   .productInfo {
-    margin-top: 30px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .title {
+    flex-direction: column;
+    .description {
+      margin-top: 30px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      .title {
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        min-width: 85px;
+        font-weight: 700;
+        border-radius: 8px;
+        padding: 10px 0;
+        text-align: center;
+        background-color: $secondary;
+        box-sizing: border-box;
+        border: none;
+      }
     }
-    button {
-      min-width: 85px;
-      font-weight: 700;
-      border-radius: 8px;
-      padding: 10px 0;
-      text-align: center;
-      background-color: $secondary;
-      box-sizing: border-box;
-      border: none;
+    .buy {
+      padding: 5px 10px;
+      margin-top: 20px;
+      align-self: flex-end;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        color: #fff;
+        background-color: $text-silver;
+      }
     }
   }
 }
