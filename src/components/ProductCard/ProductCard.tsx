@@ -1,19 +1,32 @@
 import { FC } from "react";
 import styles from "./productCard.module.scss";
 import shirt from "../../assets/icons/Tshirt.png";
+import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { addToFavorite } from "../../features/favoriteSlice";
 
 interface ProductCardProps {
+  _id: string;
   name: string;
   title: string;
   price: number;
   photo: string;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ name, title, price }) => {
+const ProductCard: FC<ProductCardProps> = ({ _id, name, title, price }) => {
+  const dispatch = useAppDispatch();
+  const userId = useAppSelector((state) => state.applicationSlice.userId);
+  const user = useAppSelector((state) => state.userSlice.user);
+
+  const handleAddFavorite = () => {
+    if (userId) {
+      dispatch(addToFavorite({ id: user.favorite, productId: _id }));
+    }
+  };
+
   return (
     <div className={styles.product}>
       <img src={shirt} alt="Футболка" />
-      <div className={styles.favorite}>
+      <div className={styles.favorite} onClick={handleAddFavorite}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path
             fillRule="evenodd"
