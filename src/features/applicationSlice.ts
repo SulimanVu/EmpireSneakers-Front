@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { User } from "./userSlice";
 
 interface JwtParse {
   id: string;
@@ -25,15 +26,9 @@ export function parseJwt(token: string) {
   return null;
 }
 
-interface Users {
-  _id?: string;
-  login: string;
-  password: string;
-  name?: string;
-}
-
 interface UsersState {
-  users: Users[];
+  user: User | null;
+  users: User[];
   error: boolean;
   token: string | null;
   userId: string | null | undefined;
@@ -41,6 +36,7 @@ interface UsersState {
 }
 
 const initialState: UsersState = {
+  user: null,
   users: [],
   error: false,
   token: localStorage.getItem("token"),
@@ -51,7 +47,7 @@ const initialState: UsersState = {
 };
 
 export const authSignUp = createAsyncThunk<
-  Users[],
+  User,
   { login: string; password: string }
 >("auth/signup", async ({ login, password }, { rejectWithValue }) => {
   try {
@@ -75,7 +71,7 @@ export const authSignUp = createAsyncThunk<
 
 export const authSignIn = createAsyncThunk<
   { token: string; userId: string | null },
-  Users
+  User
 >("auth/signin", async ({ login, password }, { rejectWithValue }) => {
   try {
     const res = await fetch("http://localhost:3010/users/signIn", {
@@ -117,10 +113,14 @@ const applicationSlice = createSlice({
         state.error = true;
         state.loading = false;
       })
-      .addCase(authSignUp.fulfilled, (state: UsersState) => {
-        state.error = false;
-        state.loading = false;
-      })
+      .addCase(
+        authSignUp.fulfilled,
+        (state: UsersState, action: PayloadAction<User>) => {
+          state.error = false;
+          state.loading = false;
+          state.user = action.payload;
+        }
+      )
       // SignIn
       .addCase(authSignIn.pending, (state) => {
         state.error = false;

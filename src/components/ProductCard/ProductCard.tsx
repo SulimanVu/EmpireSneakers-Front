@@ -3,6 +3,7 @@ import styles from "./productCard.module.scss";
 import shirt from "../../assets/icons/Tshirt.png";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { addToFavorite } from "../../features/favoriteSlice";
+import { addToBasket } from "../../features/basketSlice";
 
 interface ProductCardProps {
   _id: string;
@@ -23,6 +24,12 @@ const ProductCard: FC<ProductCardProps> = ({ _id, name, title, price }) => {
     }
   };
 
+  const handleAddBasket = () => {
+    if (userId) {
+      dispatch(addToBasket({ id: user.basket, productId: _id }));
+    }
+  };
+
   return (
     <div className={styles.product}>
       <img src={shirt} alt="Футболка" />
@@ -40,11 +47,16 @@ const ProductCard: FC<ProductCardProps> = ({ _id, name, title, price }) => {
         </svg>
       </div>
       <div className={styles.productInfo}>
-        <div className={styles.title}>
-          <span>{name}</span>
-          <span>{title}</span>
+        <div className={styles.description}>
+          <div className={styles.title}>
+            <span>{name}</span>
+            <span>{title}</span>
+          </div>
+          <button>${price}</button>
         </div>
-        <button>${price}</button>
+        <button onClick={handleAddBasket} className={styles.buy}>
+          В корзину
+        </button>
       </div>
     </div>
   );
