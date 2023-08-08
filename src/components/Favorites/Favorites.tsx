@@ -1,13 +1,13 @@
 import { FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
-import { Favorite, fetchFavorites } from "../../features/favoriteSlice";
+import { IFavorite, fetchFavorites } from "../../features/favoriteSlice";
 import styles from "./favorites.module.scss";
 
 const Favorites: FC = () => {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector(
     (state) => state.favoriteSlice.favorite
-  ) as Favorite[];
+  ) as IFavorite[];
   const user = useAppSelector((state) => state.userSlice.user);
 
   useEffect(() => {

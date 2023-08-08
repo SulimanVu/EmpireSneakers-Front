@@ -31,7 +31,7 @@ const ProductCard: FC<ProductCardProps> = ({
   const user = useAppSelector((state) => state.userSlice.user);
 
   const currentSize = sizes[0].size;
-  
+
   const handleAddFavorite = () => {
     if (userId) {
       dispatch(
@@ -46,7 +46,9 @@ const ProductCard: FC<ProductCardProps> = ({
 
   const handleAddBasket = () => {
     if (userId) {
-      dispatch(addToBasket({ id: user.basket, productId: _id }));
+      dispatch(
+        addToBasket({ id: user.basket, productId: _id, size: currentSize })
+      );
     }
   };
 

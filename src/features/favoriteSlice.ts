@@ -1,13 +1,13 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Product } from "../features/productSlice";
 
-export interface Favorite {
+export interface IFavorite {
   product: Product;
   size: number;
 }
 interface FavoriteState {
   _id: string;
-  favorite: Favorite[];
+  favorite: IFavorite[];
 }
 
 const initialState = {
