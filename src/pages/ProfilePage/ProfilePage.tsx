@@ -79,6 +79,7 @@ const ProfilePage: FC = () => {
         <main>
           <Outlet />
         </main>
+        
       </section>
     </>
   );

@@ -8,7 +8,7 @@ import GlobalCategories from "./pages/GlobalCategories/GlobalCategories";
 import Profile from "./components/Profile/Profile";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Favorites from "./components/Favorites/Favorites";
-import Basket from "./components/Basket/Basket";
+import BasketPage from "./pages/BasketPage/BasketPage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -48,7 +48,7 @@ function App() {
         },
         {
           path: "basket",
-          element: <Basket />,
+          element: <BasketPage />,
         },
       ],
     },
