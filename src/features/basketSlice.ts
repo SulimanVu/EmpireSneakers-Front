@@ -1,9 +1,14 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Product } from "./productSlice";
 
+export interface IBasket {
+  product: Product;
+  size: number;
+}
+
 interface BasketState {
   _id: string;
-  basket: Product[];
+  basket: IBasket[];
 }
 
 const initialState = {
@@ -25,14 +30,14 @@ export const fetchBasket = createAsyncThunk<BasketState, { id: string }>(
 
 export const addToBasket = createAsyncThunk<
   BasketState,
-  { id: string; productId: string }
->("add/basket", async ({ id, productId }, { rejectWithValue }) => {
+  { id: string; productId: string; size: number }
+>("add/basket", async ({ id, productId, size }, { rejectWithValue }) => {
   const res = await fetch(`http://localhost:3010/basket/add/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ basket: productId }),
+    body: JSON.stringify({ product: productId, size: size }),
   });
   if (!res.ok) {
     return rejectWithValue("server error");
