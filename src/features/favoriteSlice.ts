@@ -1,9 +1,13 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Product } from "../features/productSlice";
 
+export interface Favorite {
+  product: Product;
+  size: number;
+}
 interface FavoriteState {
   _id: string;
-  favorite: Product[];
+  favorite: Favorite[];
 }
 
 const initialState = {
@@ -25,14 +29,14 @@ export const fetchFavorites = createAsyncThunk<FavoriteState, { id: string }>(
 
 export const addToFavorite = createAsyncThunk<
   FavoriteState,
-  { id: string; productId: string }
->("add/favorite", async ({ id, productId }, { rejectWithValue }) => {
+  { id: string; productId: string; size: number }
+>("add/favorite", async ({ id, productId, size }, { rejectWithValue }) => {
   const res = await fetch(`http://localhost:3010/favorite/add/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ favorite: productId }),
+    body: JSON.stringify({ product: productId, size: size }),
   });
   if (!res.ok) {
     return rejectWithValue("server error");

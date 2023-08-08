@@ -5,22 +5,42 @@ import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { addToFavorite } from "../../features/favoriteSlice";
 import { addToBasket } from "../../features/basketSlice";
 
+interface sizesProps {
+  size: number;
+  quantity: number;
+}
+
 interface ProductCardProps {
   _id: string;
   name: string;
   title: string;
   price: number;
   photo: string;
+  sizes: sizesProps[];
 }
 
-const ProductCard: FC<ProductCardProps> = ({ _id, name, title, price }) => {
+const ProductCard: FC<ProductCardProps> = ({
+  _id,
+  name,
+  title,
+  price,
+  sizes,
+}) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.applicationSlice.userId);
   const user = useAppSelector((state) => state.userSlice.user);
 
+  const currentSize = sizes[0].size;
+  
   const handleAddFavorite = () => {
     if (userId) {
-      dispatch(addToFavorite({ id: user.favorite, productId: _id }));
+      dispatch(
+        addToFavorite({
+          id: user.favorite,
+          productId: _id,
+          size: currentSize,
+        })
+      );
     }
   };
 

@@ -7,15 +7,11 @@ import order from "../../assets/icons/order.svg";
 import favorite from "../../assets/icons/heart.svg";
 import profile from "../../assets/icons/profile.svg";
 import signOut from "../../assets/icons/signOut.svg";
-import { getUser } from "../../features/userSlice";
 
 const ProfilePage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const userId: string | null | undefined = useAppSelector(
-    (state) => state.applicationSlice.userId
-  );
+
   const user = useAppSelector((state) => state.userSlice.user);
   const path: string[] = location.pathname.split("/");
 
@@ -28,10 +24,6 @@ const ProfilePage: FC = () => {
       navigate("/my_accaunt/" + navPath);
     }
   };
-
-  useEffect(() => {
-    userId && dispatch(getUser({ id: userId }));
-  }, [dispatch, userId]);
 
   return (
     <>

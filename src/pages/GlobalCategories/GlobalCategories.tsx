@@ -115,7 +115,7 @@ const GlobalCategories: FC = () => {
         <section className={styles.products}>
           {filteredProducts.length !== 0 ? (
             filteredProducts.map((product) => (
-              <ProductCard key={product._id} {...product} />
+              <ProductCard key={product._id} {...product}  />
             ))
           ) : (
             <div>Нет в наличии</div>

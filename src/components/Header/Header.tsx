@@ -6,12 +6,16 @@ import logo from "../../assets/icons/logo.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { fetchProducts, filterProduct } from "../../features/productSlice";
+import { getUser } from "../../features/userSlice";
 
 const Header: FC = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const userId: string | null | undefined = useAppSelector(
+    (state) => state.applicationSlice.userId
+  );
   const globalCategories = useAppSelector(
     (state) => state.globalCategory.globalCategories
   );
@@ -31,6 +35,10 @@ const Header: FC = () => {
   useEffect(() => {
     dispatch(fetchGlobalCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    userId && dispatch(getUser({ id: userId }));
+  }, [dispatch, userId]);
 
   const path: string[] = location.pathname.split("/");
 
