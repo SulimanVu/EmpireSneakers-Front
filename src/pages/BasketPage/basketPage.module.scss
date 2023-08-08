@@ -1,0 +1,24 @@
+@import "../../index.module.scss";
+
+.basketPage {
+  width: 100%;
+  .products {
+    .navBlock {
+      background-color: $third;
+      color: #fff;
+      padding: 20px;
+      margin-bottom: 40px;
+      .navInfo {
+        width: 95%;
+        display: grid;
+        align-items: center;
+        gap: 50px;
+        grid-template-columns: 5fr 2fr 2fr 2fr 2fr;
+        text-align: center;
+        font-size: 18px;
+        font-style: italic;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

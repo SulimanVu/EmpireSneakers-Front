@@ -1,0 +1,63 @@
+@import "../../index.module.scss";
+
+.basketCard {
+  width: 95%;
+  height: 120px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  gap: 50px;
+  grid-template-columns: 5fr 2fr 2fr 2fr 2fr;
+  .productDetails {
+    display: flex;
+    align-self: flex-start;
+    img {
+      width: 105px;
+      height: 100%;
+      border-radius: 12px;
+      margin-right: 20px;
+    }
+    .description {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+      text-align: start;
+      h5 {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 10px;
+        white-space: nowrap;
+      }
+      span {
+        color: $text-silver;
+        font-size: 14px;
+      }
+    }
+  }
+  .amount {
+    padding: 11px 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: $secondary;
+    .value {
+      font-size: 12px;
+      margin: 0 13px 0 16px;
+      cursor: default;
+    }
+    div {
+      height: 14px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+  .delete {
+    cursor: pointer;
+  }
+}
