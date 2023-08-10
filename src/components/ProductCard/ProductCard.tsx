@@ -25,7 +25,9 @@ const ProductCard: FC<ProductCardProps> = ({
   title,
   price,
   sizes,
+  photo,
 }) => {
+
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.applicationSlice.userId);
   const user = useAppSelector((state) => state.userSlice.user);
@@ -54,7 +56,9 @@ const ProductCard: FC<ProductCardProps> = ({
 
   return (
     <div className={styles.product}>
-      <img src={shirt} alt="Футболка" />
+      <div className={styles.productImg}>
+        <img src={`http://localhost:3010/${photo[0]}`} alt="Футболка" />
+      </div>
       <div className={styles.favorite} onClick={handleAddFavorite}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path
