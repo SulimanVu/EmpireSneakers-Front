@@ -71,7 +71,7 @@ export const authSignUp = createAsyncThunk<
 
 export const authSignIn = createAsyncThunk<
   { token: string; userId: string | null },
-  { login: string; password: string }
+  Pick<User, "login" | "password">
 >("auth/signin", async ({ login, password }, { rejectWithValue }) => {
   try {
     const res = await fetch("http://localhost:3010/users/signIn", {
