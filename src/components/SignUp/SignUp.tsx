@@ -23,6 +23,7 @@ const SignUp: FC = () => {
     dispatch(authSignUp({ login, password }));
     navigate("/authorization/signIn");
   };
+  
   return (
     <div className={styles.signUp}>
       <h1>Sign Up</h1>

@@ -17,7 +17,6 @@ const BasketPage: FC = () => {
 
   return (
     <div className={styles.basketPage}>
-      <h1>Basket</h1>
       <div className={styles.products}>
         <div className={styles.navBlock}>
           <div className={styles.navInfo}>
@@ -25,6 +24,7 @@ const BasketPage: FC = () => {
             <div>Цена</div>
             <div>Колличество</div>
             <div>Итого</div>
+            <div>Купить</div>
             <div>Удалить</div>
           </div>
         </div>

@@ -4,16 +4,16 @@
   width: 100%;
   .products {
     .navBlock {
-      background-color: $third;
-      color: #fff;
+      color: $third;
       padding: 20px;
       margin-bottom: 40px;
+      box-shadow: 0 5px 5px -5px $basic;
       .navInfo {
         width: 95%;
         display: grid;
         align-items: center;
         gap: 50px;
-        grid-template-columns: 5fr 2fr 2fr 2fr 2fr;
+        grid-template-columns: 5fr 2fr 2fr 2fr 2fr 2fr;
         text-align: center;
         font-size: 18px;
         font-style: italic;

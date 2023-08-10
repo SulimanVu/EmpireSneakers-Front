@@ -22,7 +22,7 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
     setValue(() => value + 1);
   };
   const handleAmoutDec = () => {
-    setValue(() => value - 1);
+    value > 1 ? setValue(() => value - 1) : null;
   };
   const handleDeleteProduct = () => {
     dispatch(
@@ -49,6 +49,7 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
         </div>
       </div>
       <div className={styles.total}>{product.price * value}</div>
+      <button className={styles.buy}>Купить</button>
       <div onClick={handleDeleteProduct} className={styles.delete}>
         <img src={deleteIcon} alt="delete" />
       </div>
