@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
-import { useAppDispatch } from "../../app/hook";
+import { useAppDispatch, useAppSelector } from "../../app/hook";
 import styles from "./basketCard.module.scss";
 import { Product } from "../../features/productSlice";
 import deleteIcon from "../../assets/icons/deletecon.svg";
 import increment from "../../assets/icons/increment.svg";
 import decrement from "../../assets/icons/decrement.svg";
+import { deleteInBasket } from "../../features/basketSlice";
 
 interface BasketCardProps {
   product: Product;
@@ -12,14 +13,21 @@ interface BasketCardProps {
 }
 
 const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.userSlice.user);
+
   const [value, setValue] = useState<number>(1);
 
-  const handleAmoutInc = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log(e.currentTarget.nodeValue);
+  const handleAmoutInc = () => {
     setValue(() => value + 1);
   };
   const handleAmoutDec = () => {
     setValue(() => value - 1);
+  };
+  const handleDeleteProduct = () => {
+    dispatch(
+      deleteInBasket({ _id: user.basket, product: product._id, size: size })
+    );
   };
   return (
     <div className={styles.basketCard}>
@@ -41,7 +49,7 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
         </div>
       </div>
       <div className={styles.total}>{product.price * value}</div>
-      <div className={styles.delete}>
+      <div onClick={handleDeleteProduct} className={styles.delete}>
         <img src={deleteIcon} alt="delete" />
       </div>
     </div>

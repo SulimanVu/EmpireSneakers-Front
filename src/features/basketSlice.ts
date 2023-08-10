@@ -4,6 +4,7 @@ import { Product } from "./productSlice";
 export interface IBasket {
   product: Product;
   size: number;
+  _id: string;
 }
 
 interface BasketState {
@@ -46,6 +47,24 @@ export const addToBasket = createAsyncThunk<
   return res.json();
 });
 
+export const deleteInBasket = createAsyncThunk<
+  string,
+  { _id: string; product: string; size: number }
+>("delete/InBasket", async ({ _id, product, size }, { rejectWithValue }) => {
+  const res = await fetch(`http://localhost:3010/basket/delete/${_id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ product, size }),
+  });
+  if (!res.ok) {
+    return rejectWithValue("server error");
+  }
+
+  return res.json();
+});
+
 const basketSlice = createSlice({
   name: "favorite",
   initialState,
@@ -63,6 +82,14 @@ const basketSlice = createSlice({
         addToBasket.fulfilled,
         (state: BasketState, action: PayloadAction<BasketState>) => {
           state.basket = action.payload.basket;
+        }
+      )
+      .addCase(
+        deleteInBasket.fulfilled,
+        (state: BasketState, action: PayloadAction<string>) => {
+          state.basket = state.basket.filter(
+            (item) => item.product._id !== action.payload
+          );
         }
       );
   },
