@@ -22,6 +22,10 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    cursor: pointer;
+    .active {
+      fill: $text-silver;
+    }
   }
   .productInfo {
     display: flex;

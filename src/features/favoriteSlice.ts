@@ -45,6 +45,24 @@ export const addToFavorite = createAsyncThunk<
   return res.json();
 });
 
+export const deleteToFavorite = createAsyncThunk<
+  FavoriteState,
+  { id: string; productId: string; size: number }
+>("delete/favorite", async ({ id, productId, size }, { rejectWithValue }) => {
+  const res = await fetch(`http://localhost:3010/favorite/delete/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ product: productId, size: size }),
+  });
+  if (!res.ok) {
+    return rejectWithValue("server error");
+  }
+
+  return res.json();
+});
+
 const favoriteSlice = createSlice({
   name: "favorite",
   initialState,
@@ -60,6 +78,12 @@ const favoriteSlice = createSlice({
       )
       .addCase(
         addToFavorite.fulfilled,
+        (state: FavoriteState, action: PayloadAction<FavoriteState>) => {
+          state.favorite = action.payload.favorite;
+        }
+      )
+      .addCase(
+        deleteToFavorite.fulfilled,
         (state: FavoriteState, action: PayloadAction<FavoriteState>) => {
           state.favorite = action.payload.favorite;
         }

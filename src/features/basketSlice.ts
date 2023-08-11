@@ -52,7 +52,7 @@ export const deleteInBasket = createAsyncThunk<
   { _id: string; product: string; size: number }
 >("delete/InBasket", async ({ _id, product, size }, { rejectWithValue }) => {
   const res = await fetch(`http://localhost:3010/basket/delete/${_id}`, {
-    method: "DELETE",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
