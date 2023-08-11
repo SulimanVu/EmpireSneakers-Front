@@ -9,10 +9,12 @@ import { fetchProducts } from "../../features/productSlice";
 import Categories from "../../components/Categories/Categories";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import rightArrow from "../../assets/icons/rightArrow.svg";
+import { fetchFavorites } from "../../features/favoriteSlice";
 
 const GlobalCategories: FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.userSlice.user);
 
   const [priceDrop, setPriceDrop] = useState(false);
   const [priceMinValue, setPriceMinValue] = useState<number>(10);
@@ -49,7 +51,8 @@ const GlobalCategories: FC = () => {
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchFavorites({ id: user.favorite }));
+  }, [dispatch, user]);
 
   return (
     <div>
@@ -115,7 +118,7 @@ const GlobalCategories: FC = () => {
         <section className={styles.products}>
           {filteredProducts.length !== 0 ? (
             filteredProducts.map((product) => (
-              <ProductCard key={product._id} {...product}  />
+              <ProductCard key={product._id} {...product} />
             ))
           ) : (
             <div>Нет в наличии</div>

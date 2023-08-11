@@ -19,7 +19,7 @@ const Favorites: FC = () => {
       <h1>Favorites</h1>
       {favorites.map((item) => {
         return (
-          <div className={styles.favorite}>
+          <div key={item.product._id} className={styles.favorite}>
             <div> Наименование: {item.product.name} </div>
             <div className={styles.size}>Размер:{item.size}</div>
           </div>
