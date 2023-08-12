@@ -58,6 +58,7 @@ const ProductCard: FC<ProductCardProps> = ({
         );
       }
     }
+    
   };
 
   const handleAddBasket = () => {
