@@ -1,8 +1,8 @@
 import { FC, useEffect } from "react";
-import rightArrow from "../../assets/icons/rightArrow.svg";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import styles from "./categories.module.scss";
 import { filterProduct } from "../../features/productSlice";
+import RightArrowSVG from "../../assets/icons/RightArrowSVG";
 
 interface CategoriesProps {
   _id: string;
@@ -25,7 +25,7 @@ const Categories: FC<CategoriesProps> = ({ name, _id }) => {
       onClick={handleSort}
     >
       <span>{name}</span>
-      <img src={rightArrow} alt="arrow" />
+      <RightArrowSVG />
     </li>
   );
 };

@@ -7,34 +7,50 @@ import { useAppDispatch } from "../../app/hook";
 import { Link } from "react-router-dom";
 
 const SignUp: FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useAppDispatch();
-  const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSetLogin = (e: ChangeEvent<HTMLInputElement>) => {
     setLogin(e.target.value);
   };
   const handleSetPass = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const navigate = useNavigate();
+  const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+  const handleSetEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const handleSetPhone = (e: ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+  };
+
   const handleSignUp = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(authSignUp({ login, password }));
+    dispatch(authSignUp({ name, email, login, password, phone }));
     navigate("/authorization/signIn");
   };
-  
+
   return (
     <div className={styles.signUp}>
       <h1>Sign Up</h1>
       <div className={styles.inputs}>
         <form onSubmit={handleSignUp}>
           <span>Имя</span>
-          <input type="text" />
+          <input type="text" value={name} onChange={handleSetName} />
           <span>Email</span>
-          <input type="text" />
+          <input type="text" value={email} onChange={handleSetEmail} />
+          <span>Номер телефона</span>
+          <input type="text" value={email} onChange={handleSetPhone} />
           <span>Логин</span>
-          <input type="text" value={login} onChange={handleSetName} />
+          <input type="text" value={login} onChange={handleSetLogin} />
           <div className={styles.password}>
             <span>Пароль</span>
             <img src={eye} alt="eye" />

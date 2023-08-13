@@ -3,7 +3,7 @@ import styles from "./productCard.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { IFavorite, addToFavorite, deleteToFavorite } from "../../features/favoriteSlice";
 import { addToBasket } from "../../features/basketSlice";
-import Heart from "../../assets/icons/Heart";
+import HeartSVG from "../../assets/icons/HeartSVG";
 
 interface sizesProps {
   size: number;
@@ -58,7 +58,7 @@ const ProductCard: FC<ProductCardProps> = ({
         );
       }
     }
-    
+
   };
 
   const handleAddBasket = () => {
@@ -75,7 +75,7 @@ const ProductCard: FC<ProductCardProps> = ({
         <img src={`http://localhost:3010/${photo[0]}`} alt="Футболка" />
       </div>
       <div className={styles.favorite} onClick={handleAddFavorite}>
-        <Heart className={favorites ? styles.active : styles.none} />
+        <HeartSVG className={favorites ? styles.active : styles.none} />
       </div>
       <div className={styles.productInfo}>
         <div className={styles.description}>

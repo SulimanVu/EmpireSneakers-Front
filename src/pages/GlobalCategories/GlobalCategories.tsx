@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { fetchCategories } from "../../features/categoriesSlice";
 import Header from "../../components/Header/Header";
-import filter from "../../assets/icons/filter.svg";
 import { fetchProducts } from "../../features/productSlice";
 import Categories from "../../components/Categories/Categories";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import rightArrow from "../../assets/icons/rightArrow.svg";
 import { fetchFavorites } from "../../features/favoriteSlice";
+import FilterSVG from "../../assets/icons/FilterSVG";
+import RightArrowSVG from "../../assets/icons/RightArrowSVG";
 
 const GlobalCategories: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -61,7 +61,7 @@ const GlobalCategories: FC = () => {
         <aside>
           <div className={styles.filter}>
             <span>Filter</span>
-            <img src={filter} alt="filter" />
+            <FilterSVG />
           </div>
           <ul className={styles.categories}>
             {categories.map((category) => (
@@ -79,10 +79,8 @@ const GlobalCategories: FC = () => {
               className={styles.price}
             >
               <span>Price</span>
-              <img
+              <RightArrowSVG
                 className={priceDrop ? styles.rotated : styles.norotated}
-                src={rightArrow}
-                alt="filter"
               />
             </div>
             <div

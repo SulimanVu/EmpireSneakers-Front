@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./profile.module.scss";
 import { useAppSelector } from "../../app/hook";
-import profile from "../../assets/icons/profile.svg";
+import ProfileSVG from "../../assets/icons/ProfileSVG";
 
 const Profile = () => {
   const user = useAppSelector((state) => state.userSlice.user);
@@ -20,7 +20,7 @@ const Profile = () => {
         {user?.avatar ? (
           <img src={`http://localhost:3010/${user.avatar}`} alt="avatar" />
         ) : (
-          <img src={profile} alt="avatar" />
+          <ProfileSVG />
         )}
       </div>
 

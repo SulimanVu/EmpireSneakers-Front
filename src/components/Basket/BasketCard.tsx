@@ -2,10 +2,10 @@ import { FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import styles from "./basketCard.module.scss";
 import { Product } from "../../features/productSlice";
-import deleteIcon from "../../assets/icons/deletecon.svg";
-import increment from "../../assets/icons/increment.svg";
-import decrement from "../../assets/icons/decrement.svg";
 import { deleteInBasket } from "../../features/basketSlice";
+import DecrementSVG from "../../assets/icons/DecrementSVG";
+import DeleteSVG from "../../assets/icons/DeleteSVG";
+import IncrementSVG from "../../assets/icons/IncrementSVG";
 
 interface BasketCardProps {
   product: Product;
@@ -41,17 +41,17 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
       <div className={styles.price}>{product.price}</div>
       <div className={styles.amount}>
         <div onClick={handleAmoutDec}>
-          <img src={decrement} alt="inc" />
+          <DecrementSVG />
         </div>
         <div className={styles.value}>{value}</div>
         <div onClick={handleAmoutInc}>
-          <img src={increment} alt="dec" />
+          <IncrementSVG />
         </div>
       </div>
       <div className={styles.total}>{product.price * value}</div>
       <button className={styles.buy}>Купить</button>
       <div onClick={handleDeleteProduct} className={styles.delete}>
-        <img src={deleteIcon} alt="delete" />
+        <DeleteSVG />
       </div>
     </div>
   );
