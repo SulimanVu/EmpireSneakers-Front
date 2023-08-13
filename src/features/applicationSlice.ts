@@ -46,28 +46,28 @@ const initialState: UsersState = {
   loading: false,
 };
 
-export const authSignUp = createAsyncThunk<
-  User,
-  { login: string; password: string }
->("auth/signup", async ({ login, password }, { rejectWithValue }) => {
-  try {
-    const res = await fetch(`http://localhost:3010/users/signUp`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ login, password }),
-    });
+export const authSignUp = createAsyncThunk<User, Partial<User>>(
+  "auth/signup",
+  async ({ name, email, login, password, phone }, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`http://localhost:3010/users/signUp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, login, password, phone }),
+      });
 
-    if (!res.ok) {
-      return rejectWithValue("server error");
+      if (!res.ok) {
+        return rejectWithValue("server error");
+      }
+
+      return res.json();
+    } catch (error) {
+      return rejectWithValue(error);
     }
-
-    return res.json();
-  } catch (error) {
-    return rejectWithValue(error);
   }
-});
+);
 
 export const authSignIn = createAsyncThunk<
   { token: string; userId: string | null },

@@ -1,12 +1,12 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import styles from "./profilePage.module.scss";
-import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { useAppSelector } from "../../app/hook";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import order from "../../assets/icons/order.svg";
-import favorite from "../../assets/icons/heart.svg";
-import profile from "../../assets/icons/profile.svg";
-import signOut from "../../assets/icons/signOut.svg";
+import Heart from "../../assets/icons/HeartSVG";
+import OrderSVG from "../../assets/icons/OrderSVG";
+import SignOutSVG from "../../assets/icons/SignOutSVG";
+import ProfileSVG from "../../assets/icons/ProfileSVG";
 
 const ProfilePage: FC = () => {
   const location = useLocation();
@@ -39,7 +39,7 @@ const ProfilePage: FC = () => {
               title="basket"
             >
               <div>
-                <img src={order} alt="order" />
+                <OrderSVG />
               </div>
               <span>Моя корзина</span>
             </li>
@@ -51,7 +51,7 @@ const ProfilePage: FC = () => {
               title="favorites"
             >
               <div>
-                <img src={favorite} alt="favorite" />
+                <Heart />
               </div>
               <span>Избранные</span>
             </li>
@@ -63,13 +63,13 @@ const ProfilePage: FC = () => {
               title="personal_info"
             >
               <div>
-                <img src={profile} alt="personal_info" />
+                <ProfileSVG />
               </div>
               <span>Мой аккаунт</span>
             </li>
             <li onClick={navigateHandler} title="logOut">
               <div>
-                <img src={signOut} alt="logout" />
+                <SignOutSVG />
               </div>
               <span>Выйти из аккаунта</span>
             </li>
@@ -79,7 +79,6 @@ const ProfilePage: FC = () => {
         <main>
           <Outlet />
         </main>
-        
       </section>
     </>
   );

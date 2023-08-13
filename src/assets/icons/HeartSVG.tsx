@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-const Heart = (props: SVGProps<SVGSVGElement>) => {
+const HeartSVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" fill="none">
       <path
@@ -16,4 +16,4 @@ const Heart = (props: SVGProps<SVGSVGElement>) => {
   );
 };
 
-export default Heart;
+export default HeartSVG;
