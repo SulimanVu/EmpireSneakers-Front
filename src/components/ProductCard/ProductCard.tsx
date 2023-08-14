@@ -1,12 +1,16 @@
 import { FC } from "react";
 import styles from "./productCard.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
-import { IFavorite, addToFavorite, deleteToFavorite } from "../../features/favoriteSlice";
+import {
+  IFavorite,
+  addToFavorite,
+  deleteToFavorite,
+} from "../../features/favoriteSlice";
 import { addToBasket } from "../../features/basketSlice";
 import HeartSVG from "../../assets/icons/HeartSVG";
 
 interface sizesProps {
-  size: number;
+  size?: number;
   quantity: number;
 }
 
@@ -36,7 +40,7 @@ const ProductCard: FC<ProductCardProps> = ({
     )
   );
 
-  const currentSize = sizes[0].size;
+  const currentSize = sizes[0]?.size || 1;
 
   const handleAddFavorite = () => {
     if (userId) {
@@ -58,7 +62,6 @@ const ProductCard: FC<ProductCardProps> = ({
         );
       }
     }
-
   };
 
   const handleAddBasket = () => {

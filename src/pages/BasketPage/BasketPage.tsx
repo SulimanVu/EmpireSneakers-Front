@@ -32,7 +32,7 @@ const BasketPage: FC = () => {
           <Basket
             key={item.product._id}
             product={item.product}
-            size={item.size}
+            size={item?.size}
           />
         ))}
       </div>
