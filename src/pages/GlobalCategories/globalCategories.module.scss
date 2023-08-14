@@ -100,6 +100,7 @@ main {
     margin: 20px auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    column-gap: 50px;
+    row-gap: 100px;
   }
 }
