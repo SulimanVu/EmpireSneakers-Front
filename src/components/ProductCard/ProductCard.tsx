@@ -35,7 +35,7 @@ const ProductCard: FC<ProductCardProps> = ({
 
 
   // Нужно перенести эту логику на страницу с полным описанием товара
-  // Заменить везда цифру 36 на нужный размер
+  // Заменить везда цифру 40 на нужный размер
   const handleAddFavorite = () => {
     if (userId) {
       if (!favorites) {
@@ -43,7 +43,7 @@ const ProductCard: FC<ProductCardProps> = ({
           addToFavorite({
             id: user.favorite,
             productId: _id,
-            size: 36,
+            size: 40,
           })
         );
       } else {
@@ -51,7 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({
           deleteToFavorite({
             id: user.favorite,
             productId: _id,
-            size: 36,
+            size: 40,
           })
         );
       }
@@ -61,7 +61,7 @@ const ProductCard: FC<ProductCardProps> = ({
   const handleAddBasket = () => {
     if (userId) {
       dispatch(
-        addToBasket({ id: user.basket, productId: _id, size: 36 })
+        addToBasket({ id: user.basket, productId: _id, size: 40 })
       );
     }
   };
