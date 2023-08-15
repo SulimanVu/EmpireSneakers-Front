@@ -51,6 +51,14 @@ const productSlice = createSlice({
       );
       state.currentCategory = action.payload;
     },
+    priceFilter(state, action: PayloadAction<{ min: number; max: number }>) {
+      state.sortedProduct = state.sortedProduct.filter(
+        (product) =>
+          product.price > action.payload.min &&
+          product.price < action.payload.max
+      );
+      console.log(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -63,5 +71,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { filterProduct } = productSlice.actions;
+export const { filterProduct, priceFilter } = productSlice.actions;
 export default productSlice.reducer;

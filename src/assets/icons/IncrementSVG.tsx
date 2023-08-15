@@ -14,8 +14,8 @@ const IncrementSVG = (props: SVGProps<SVGSVGElement>) => {
         id="Icon"
         d="M5.86181 1.37939V10.6206M10.4824 6L1.24121 6"
         stroke="#3C4242"
-        stroke-width="1.03964"
-        stroke-linecap="round"
+        strokeWidth="1.03964"
+        strokeLinecap="round"
       />
     </svg>
   );

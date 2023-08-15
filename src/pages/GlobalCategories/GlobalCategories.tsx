@@ -22,19 +22,11 @@ const GlobalCategories: FC = () => {
   // const [colorDrop, setColorDrop] = useState(false);
 
   const handlePriceMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (+priceMinValue < 100) {
-      setPriceMinValue(100);
-    } else if (+priceMinValue > 1000) {
-      setPriceMinValue(1000);
-    } else {
-      setPriceMinValue(+e.target.value);
-    }
+    setPriceMinValue(+e.target.value);
   };
+
   const handlePriceMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setPriceMaxValue(+e.target.value);
-    +priceMaxValue > 100000
-      ? setPriceMaxValue(10000)
-      : setPriceMaxValue(+e.target.value);
+    setPriceMaxValue(+e.target.value);
   };
 
   const categories = useAppSelector(

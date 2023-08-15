@@ -14,8 +14,8 @@ const DecrementSVG = (props: SVGProps<SVGSVGElement>) => {
         id="Icon"
         d="M10.2412 1L1 1"
         stroke="#3C4242"
-        stroke-width="1.03964"
-        stroke-linecap="round"
+        strokeWidth="1.03964"
+        strokeLinecap="round"
       />
     </svg>
   );
