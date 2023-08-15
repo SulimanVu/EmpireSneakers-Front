@@ -48,7 +48,7 @@ const SignUp: FC = () => {
           <span>Email</span>
           <input type="text" value={email} onChange={handleSetEmail} />
           <span>Номер телефона</span>
-          <input type="text" value={email} onChange={handleSetPhone} />
+          <input type="text" value={phone} onChange={handleSetPhone} />
           <span>Логин</span>
           <input type="text" value={login} onChange={handleSetLogin} />
           <div className={styles.password}>
