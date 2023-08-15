@@ -9,18 +9,12 @@ import {
 import { addToBasket } from "../../features/basketSlice";
 import HeartSVG from "../../assets/icons/HeartSVG";
 
-interface sizesProps {
-  size?: number;
-  quantity: number;
-}
-
 interface ProductCardProps {
   _id: string;
   name: string;
   title: string;
   price: number;
   photo: string;
-  sizes: sizesProps[];
 }
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -28,7 +22,6 @@ const ProductCard: FC<ProductCardProps> = ({
   name,
   title,
   price,
-  sizes,
   photo,
 }) => {
   const dispatch = useAppDispatch();
@@ -40,8 +33,9 @@ const ProductCard: FC<ProductCardProps> = ({
     )
   );
 
-  const currentSize = sizes[0]?.size || 1;
 
+  // Нужно перенести эту логику на страницу с полным описанием товара
+  // Заменить везда цифру 36 на нужный размер
   const handleAddFavorite = () => {
     if (userId) {
       if (!favorites) {
@@ -49,7 +43,7 @@ const ProductCard: FC<ProductCardProps> = ({
           addToFavorite({
             id: user.favorite,
             productId: _id,
-            size: currentSize,
+            size: 36,
           })
         );
       } else {
@@ -57,7 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({
           deleteToFavorite({
             id: user.favorite,
             productId: _id,
-            size: currentSize,
+            size: 36,
           })
         );
       }
@@ -67,7 +61,7 @@ const ProductCard: FC<ProductCardProps> = ({
   const handleAddBasket = () => {
     if (userId) {
       dispatch(
-        addToBasket({ id: user.basket, productId: _id, size: currentSize })
+        addToBasket({ id: user.basket, productId: _id, size: 36 })
       );
     }
   };

@@ -1,5 +1,10 @@
 .favoriteBlock {
-  width: 100%;
+  width: 95%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 50px;
+  row-gap: 100px;
   .favorite {
     display: flex;
     width: 30%;

@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { IFavorite, fetchFavorites } from "../../features/favoriteSlice";
 import styles from "./favorites.module.scss";
+import ProductCard from "../ProductCard/ProductCard";
 
 const Favorites: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,14 +17,8 @@ const Favorites: FC = () => {
 
   return (
     <div className={styles.favoriteBlock}>
-      <h1>Favorites</h1>
       {favorites.map((item) => {
-        return (
-          <div key={item.product._id} className={styles.favorite}>
-            <div> Наименование: {item.product.name} </div>
-            <div className={styles.size}>Размер:{item.size}</div>
-          </div>
-        );
+        return <ProductCard key={item.product._id} {...item.product} />;
       })}
     </div>
   );
