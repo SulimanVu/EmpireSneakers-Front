@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./productCard.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import {
@@ -8,6 +8,8 @@ import {
 } from "../../features/favoriteSlice";
 import { addToBasket } from "../../features/basketSlice";
 import HeartSVG from "../../assets/icons/HeartSVG";
+import CustomAlert from "../Alert/CustomAlert";
+import { alertState } from "../Alert/alertState";
 
 interface ProductCardProps {
   _id: string;
@@ -33,6 +35,9 @@ const ProductCard: FC<ProductCardProps> = ({
     )
   );
 
+  const [openAlert, setOpenAlert] = useState(false);
+  const [message, setMessage] = useState("");
+  const [alert, setAlert] = useState<alertState>(alertState.success);
 
   // Нужно перенести эту логику на страницу с полным описанием товара
   // Заменить везда цифру 40 на нужный размер
@@ -46,6 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({
             size: 40,
           })
         );
+        setMessage(() => "Товар добавлен в избранное");
       } else {
         dispatch(
           deleteToFavorite({
@@ -54,39 +60,51 @@ const ProductCard: FC<ProductCardProps> = ({
             size: 40,
           })
         );
+        setMessage(() => "Товар удален из избранных");
       }
+    } else {
+      setMessage(() => "Вы не вошли в аккаунт");
+      setOpenAlert(true);
+      setAlert(alertState.error);
     }
   };
 
   const handleAddBasket = () => {
     if (userId) {
-      dispatch(
-        addToBasket({ id: user.basket, productId: _id, size: 40 })
-      );
+      dispatch(addToBasket({ id: user.basket, productId: _id, size: 40 }));
     }
   };
 
   return (
-    <div className={styles.product}>
-      <div className={styles.productImg}>
-        <img src={`http://localhost:3010/${photo[0]}`} alt="Футболка" />
-      </div>
-      <div className={styles.favorite} onClick={handleAddFavorite}>
-        <HeartSVG className={favorites ? styles.active : styles.none} />
-      </div>
-      <div className={styles.productInfo}>
-        <div className={styles.description}>
-          <div className={styles.title}>
-            <span>{name}</span>
-            <span>{title}</span>
-          </div>
-          <button>${price}</button>
+    <>
+      {openAlert && (
+        <CustomAlert
+          setOpenAlert={setOpenAlert}
+          alert={alert}
+          message={message}
+        />
+      )}
+      <div className={styles.product}>
+        <div className={styles.productImg}>
+          <img src={`http://localhost:3010/${photo[0]}`} alt="Футболка" />
         </div>
-        <button onClick={handleAddBasket} className={styles.buy}>
-          В корзину
-        </button>
+        <div className={styles.favorite} onClick={handleAddFavorite}>
+          <HeartSVG className={favorites ? styles.active : styles.none} />
+        </div>
+        <div className={styles.productInfo}>
+          <div className={styles.description}>
+            <div className={styles.title}>
+              <span>{name}</span>
+              <span>{title}</span>
+            </div>
+            <button>${price}</button>
+          </div>
+          <button onClick={handleAddBasket} className={styles.buy}>
+            В корзину
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
