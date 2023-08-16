@@ -10,9 +10,12 @@ interface AlertProps {
 }
 
 const CustomAlert = ({ alert, message, setOpenAlert }: AlertProps) => {
+  const time = alert === "error" ? 3000 : 900;
+
   setTimeout(() => {
     setOpenAlert(false);
-  }, 3000);
+  }, time);
+
   return (
     <div className={styles.alert}>
       <Alert
@@ -20,8 +23,7 @@ const CustomAlert = ({ alert, message, setOpenAlert }: AlertProps) => {
         variant="filled"
         severity={alert}
       >
-        <div className={styles.progress}></div>
-
+        {alert === "error" && <div className={styles.progress}></div>}
         <AlertTitle>{message}</AlertTitle>
         <span>
           {alert === "error" && (

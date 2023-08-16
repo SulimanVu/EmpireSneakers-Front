@@ -52,6 +52,8 @@ const ProductCard: FC<ProductCardProps> = ({
           })
         );
         setMessage(() => "Товар добавлен в избранное");
+        setOpenAlert(true);
+        setAlert(alertState.success);
       } else {
         dispatch(
           deleteToFavorite({
@@ -61,6 +63,8 @@ const ProductCard: FC<ProductCardProps> = ({
           })
         );
         setMessage(() => "Товар удален из избранных");
+        setOpenAlert(true);
+        setAlert(alertState.success);
       }
     } else {
       setMessage(() => "Вы не вошли в аккаунт");
