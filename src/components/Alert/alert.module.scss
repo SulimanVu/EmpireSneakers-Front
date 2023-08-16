@@ -1,0 +1,35 @@
+@import "../../index.module.scss";
+
+.alert {
+  position: absolute;
+  width: 350px;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 3px;
+    background-color: $basic;
+    animation-name: borderAlert;
+    animation-duration: 3s;
+  }
+  span {
+    font-size: 12px;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+@keyframes borderAlert {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
