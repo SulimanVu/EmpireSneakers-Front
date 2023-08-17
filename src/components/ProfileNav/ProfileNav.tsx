@@ -21,7 +21,7 @@ const ProfileNav: FC = () => {
     }
   };
   return (
-    <ul>
+    <ul className={styles.list}>
       <li
         className={path.includes("basket") ? styles.active : styles.none}
         onClick={navigateHandler}

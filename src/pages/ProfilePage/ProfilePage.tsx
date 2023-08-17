@@ -15,8 +15,8 @@ const ProfilePage: FC = () => {
         <aside>
           <h2>Привет: {user?.name}</h2>
           <span>Добро пожаловать !</span>
+          <ProfileNav />
         </aside>
-        <ProfileNav />
         <main>
           <Outlet />
         </main>
