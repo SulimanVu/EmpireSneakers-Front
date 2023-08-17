@@ -6,7 +6,6 @@ import arrow_bottom from "../../assets/icons/arrow_bottom.png"
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { fetchOneProduct } from "../../features/productSlice";
 import { useParams } from "react-router-dom";
-import StarSVG from "../../assets/icons/StarSVG";
 import message from "../../assets/icons/message_icon.jpg"
 
 const ProductDetail: React.FC = () => {
@@ -76,19 +75,11 @@ const ProductDetail: React.FC = () => {
                     </div>
                 </div>
                 <div className={styles.product_descr}>
-                   
                     <h1 className={styles.descr_title}>{product?.title}</h1>
                     <div className={styles.rating_info}>
-                        {/* <ul className={styles.stars}>
-                            <li>{<StarSVG/>}</li>
-                            <li>{<StarSVG/>}</li>
-                            <li>{<StarSVG/>}</li>
-                            <li>{<StarSVG/>}</li>
-                            <li>{<StarSVG/>}</li>
-                        </ul> */}
                         <div className={styles.rating}>
                             <div className={styles.rating__body}>
-                                <div className={styles.rating__active} style={{width: `${product?.rating / 0.05}%` }}></div>
+                                <div className={styles.rating__active} style={{ width: `${product?.rating / 0.05}%` }}></div>
                                 <div className={styles.rating__items}>
                                     <input type="radio" className={styles.rating__item} value="1" name="rating" />
                                     <input type="radio" className={styles.rating__item} value="2" name="rating" />
@@ -99,10 +90,12 @@ const ProductDetail: React.FC = () => {
                             </div>
                         </div>
                         <div className={styles.rating__value}>{product?.rating}</div>
-
-
                         <img src={message} alt="message" />
                         <div className={styles.comments}>120 comment</div>
+                    </div>
+                    <div className={styles.product_size}>
+                        <div className={styles.select_size}>Select Size</div>
+                        <div className={styles.size_guide}>Size Guide</div>
                     </div>
                 </div>
             </div>
