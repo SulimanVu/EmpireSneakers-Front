@@ -1,18 +1,23 @@
 import { FC, useState } from "react";
 import RightArrowSVG from "../../assets/icons/RightArrowSVG";
 import styles from "./pricePopUp.module.scss";
+import { useAppDispatch } from "../../app/hook";
+import { priceFilter } from "../../features/productSlice";
 
 const PricePopUp: FC = () => {
   const [priceDrop, setPriceDrop] = useState(false);
-  const [priceMinValue, setPriceMinValue] = useState("");
-  const [priceMaxValue, setPriceMaxValue] = useState("");
+  const [priceMinValue, setPriceMinValue] = useState(1000);
+  const [priceMaxValue, setPriceMaxValue] = useState(10000);
 
+  const dispatch = useAppDispatch();
   const handlePriceMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPriceMinValue(e.target.value.replace(/[^\d.]/g, ""));
+    setPriceMinValue(+e.target.value.replace(/[^\d.]/g, ""));
+    dispatch(priceFilter({ min: +e.target.value, max: +priceMaxValue }));
   };
 
   const handlePriceMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPriceMaxValue(e.target.value.replace(/[^\d.]/g, ""));
+    setPriceMaxValue(+e.target.value.replace(/[^\d.]/g, ""));
+    dispatch(priceFilter({ min: +priceMinValue, max: +e.target.value }));
   };
 
   return (
