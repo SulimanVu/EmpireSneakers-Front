@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Favorites from "./components/Favorites/Favorites";
 import BasketPage from "./pages/BasketPage/BasketPage";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 
 function App() {
   const routes = createBrowserRouter([
@@ -55,6 +56,10 @@ function App() {
     {
       path: "/Gcategory/:id",
       element: <GlobalCategories />,
+    },
+    {
+      path: "/productDetail/:id",
+      element: <ProductDetail />,
     },
   ]);
 

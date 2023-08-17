@@ -32,7 +32,7 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
   return (
     <div className={styles.basketCard}>
       <div className={styles.productDetails}>
-        <img src={`http://localhost:3010/${product.photo}`} alt="image" />
+        <img src={`http://localhost:3010/${product.photo[0]}`} alt="image" />
         <div className={styles.description}>
           <h5>{product.name}</h5>
           <span>Размер: {size}</span>

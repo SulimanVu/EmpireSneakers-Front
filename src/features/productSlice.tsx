@@ -5,7 +5,7 @@ import { GlobalCategories } from "./globalCategorySlice";
 export interface Product {
   _id: string;
   name: string;
-  photo: string;
+  photo: [string];
   title: string;
   materials: string;
   articul: number;
@@ -13,22 +13,25 @@ export interface Product {
   categories: Category[];
   globalCategory: GlobalCategories;
   comments: string[];
+  rating:number;
   sizes: [{ size: number; quantity: number }];
 }
 
 interface ProductState {
+  oneProduct:Product | null;
   products: Product[];
   sortedProduct: Product[];
   currentCategory: string;
 }
 
 const initialState: ProductState = {
+  oneProduct:null,
   products: [],
   sortedProduct: [],
   currentCategory: "",
 };
 
-export const fetchProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk<Product[]>(
   "products/fetch",
   async (_, { rejectWithValue }) => {
     const res = await fetch(`http://localhost:3010/product`);
@@ -36,10 +39,25 @@ export const fetchProducts = createAsyncThunk(
     if (!res.ok) {
       return rejectWithValue("server error");
     }
+   
 
-    return res.json();
+    return res.json()
   }
 );
+export const fetchOneProduct = createAsyncThunk<Product,string>(
+  "one/products/fetch",
+  async (id, { rejectWithValue }) => {
+    const res = await fetch(`http://localhost:3010/product/${id}`);
+
+    if (!res.ok) {
+      return rejectWithValue("server error");
+    }
+   
+
+    return res.json()
+  }
+);
+
 
 const productSlice = createSlice({
   name: "product",
@@ -53,13 +71,18 @@ const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
+    builder
+    .addCase(
       fetchProducts.fulfilled,
       (state: ProductState, action: PayloadAction<Product[]>) => {
         state.products = action.payload;
         state.sortedProduct = action.payload;
       }
-    );
+    )
+    .addCase(fetchOneProduct.fulfilled, 
+      (state, action,) => {
+        state.oneProduct = action.payload
+      })
   },
 });
 

@@ -1,0 +1,146 @@
+.product_detail {
+  display: flex;
+
+  .product_detail_img {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    background: #f6f6f6;
+
+    .slider_controls_container {
+      margin-right: 35px;
+      margin-left: auto;
+
+      .slide {
+        margin: auto 0;
+        margin-bottom: 10px;
+      }
+      img {
+        width: 68px;
+        height: 68px;
+        border-radius: 9.072px;
+      }
+
+      .controls button {
+        display: block;
+        background: none;
+        margin: 0 auto;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .active_slide_container img {
+      width: 520px;
+      height: 650px;
+    }
+
+    .slide {
+      border: none;
+    }
+    .active_slide {
+      padding: 5px;
+      border-radius: 12.096px;
+      border: 0.756px solid #3c4242;
+    }
+  }
+  .product_descr {
+    padding-left: 75px;
+    padding-top: 30px;
+
+    
+    .descr_title {
+      max-width: 350px;
+      color: #3c4242;
+      margin: 0;
+      margin-bottom: 35px;
+      font-family: Roboto;
+      font-size: 34px;
+      font-style: italic;
+      font-weight: 100;
+      line-height: 140%; /* 47.6px */
+      letter-spacing: 0.68px;
+    }
+    .stars {
+      display: flex;
+      padding: 0;
+      list-style-type: none;
+
+      li {
+        margin-right: 10px;
+      }
+    }
+    .rating_info {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 15px;
+      }
+    }
+    // .rating {
+    //   margin-right: 25px;
+    //   color: #807d7e;
+    //   font-family: Roboto;
+    //   font-size: 18px;
+    //   font-style: normal;
+    //   font-weight: 500;
+    //   line-height: normal;
+    // }
+    .comments {
+      color: #807d7e;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+}
+
+.rating {
+  display: flex;
+  align-items: flex-end;
+  font-size: 40px;
+}
+.rating__body {
+  position: relative;
+}
+.rating__body::before {
+  content: "★★★★★";
+  display: block;
+  color: #3c4242;
+  font-size: 22px;
+}
+.rating__active {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.rating__active::before {
+  content: "★★★★★";
+  position: absolute;
+  font-size: 22px;
+  top: 0;
+  left: 0;
+  color: #ffd300;
+}
+
+.rating__items {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.rating__item {
+  flex: 0 0 20%;
+  opacity: 0;
+}
