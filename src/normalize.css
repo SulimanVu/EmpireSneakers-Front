@@ -66,6 +66,7 @@ pre {
 
 a {
   background-color: transparent;
+  outline-color: #8a33fd;
 }
 
 /**
@@ -157,6 +158,8 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  outline-color: #8a33fd;
+  caret-color: #8a33fd;
 }
 
 /**

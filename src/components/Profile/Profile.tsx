@@ -14,16 +14,7 @@ const Profile = () => {
 
   return (
     <div className={styles.profile}>
-      <h1>Profile</h1>
-
-      <div className={styles.avatar}>
-        {user?.avatar ? (
-          <img src={`http://localhost:3010/${user.avatar}`} alt="avatar" />
-        ) : (
-          <ProfileSVG />
-        )}
-      </div>
-
+      <h2>Контактные данные</h2>
       <section className={styles.inputsBlock}>
         <div className={styles.input}>
           <div>
