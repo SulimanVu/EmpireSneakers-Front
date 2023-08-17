@@ -52,12 +52,23 @@ const productSlice = createSlice({
       state.currentCategory = action.payload;
     },
     priceFilter(state, action: PayloadAction<{ min: number; max: number }>) {
-      state.sortedProduct = state.sortedProduct.filter(
-        (product) =>
-          product.price > action.payload.min &&
-          product.price < action.payload.max
+      const sortWithCategory = state.products.filter((product) =>
+        product.categories.find(
+          (category) => category._id === state.currentCategory
+        )
       );
-      console.log(action.payload);
+
+      sortWithCategory.length > 0
+        ? (state.sortedProduct = sortWithCategory.filter(
+            (product) =>
+              product.price > action.payload.min &&
+              product.price < action.payload.max
+          ))
+        : (state.sortedProduct = state.products.filter(
+            (product) =>
+              product.price > action.payload.min &&
+              product.price < action.payload.max
+          ));
     },
   },
   extraReducers: (builder) => {
