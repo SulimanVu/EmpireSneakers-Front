@@ -137,5 +137,49 @@
         line-height: normal;
       }
     }
+
+    .product_size_title {
+      display: flex;
+      margin-bottom: 25px;
+      .select_size {
+        margin-right: 20px;
+        color: #3f4646;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 100;
+        line-height: normal;
+      }
+      .size_guide {
+        margin-right: 15px;
+        color: #807d7e;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+    }
+    .product_size {
+      display: flex;
+      .product_size_item {
+        width: 38px;
+        height: 38px;
+        margin-right: 25px;
+        padding: 10px;
+        border-radius: 12px;
+        border: 1.5px solid #bebcbd;
+        color: #3c4242;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+
+        &:hover {
+          color: #FFF;
+          background: #3C4242;
+
+        }
+      }
+    }
   }
 }

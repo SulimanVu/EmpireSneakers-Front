@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { fetchOneProduct } from "../../features/productSlice";
 import { useParams } from "react-router-dom";
 import message from "../../assets/icons/message_icon.jpg"
-
+import size_arrow from "../../assets/icons/size_arrow.png"
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const dispatch = useAppDispatch()
@@ -93,9 +93,17 @@ const ProductDetail: React.FC = () => {
                         <img src={message} alt="message" />
                         <div className={styles.comments}>120 comment</div>
                     </div>
-                    <div className={styles.product_size}>
+                    <div className={styles.product_size_title}>
                         <div className={styles.select_size}>Select Size</div>
                         <div className={styles.size_guide}>Size Guide</div>
+                        <div className="size_arrow"><img src={size_arrow} alt="" /></div>
+                    </div>
+                    <div className={styles.product_size}>
+                        <div className={styles.product_size_item}>XS</div>
+                        <div className={styles.product_size_item}>S</div>
+                        <div className={styles.product_size_item}>M</div>
+                        <div className={styles.product_size_item}>L</div>
+                        <div className={styles.product_size_item}>XL</div>
                     </div>
                 </div>
             </div>
