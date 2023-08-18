@@ -1,0 +1,62 @@
+@import "../../index.module.scss";
+
+.cardBlock {
+  margin-top: 100px;
+  width: fit-content;
+  padding: 15px 28px;
+  background-color: $secondary;
+  border-radius: 8px;
+  h2 {
+    font-size: 22px;
+  }
+  .creditType {
+    display: flex;
+    width: min-content;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  .inputs {
+    margin: 25px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-template-rows: repeat(2, 2fr);
+    gap: 15px 15px;
+    input {
+      font-size: 14px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid $third;
+    }
+  }
+}
+
+.buy {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: $basic;
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.creditCard {
+  display: flex;
+  align-items: center;
+  .circle {
+    margin-right: 20px;
+    border-radius: 100%;
+    border: 1px solid $third;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    div {
+      background-color: $third;
+      width: 11px;
+      height: 11px;
+      border-radius: 100%;
+    }
+  }
+}

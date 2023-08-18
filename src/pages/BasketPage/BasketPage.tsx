@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { IBasket, fetchBasket } from "../../features/basketSlice";
 import styles from "./basketPage.module.scss";
 import Basket from "../../components/Basket/BasketCard";
+import CreditCard from "../../components/CreaditCard/CreditCard";
 
 const BasketPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,8 @@ const BasketPage: FC = () => {
           />
         ))}
       </div>
+
+      <CreditCard />
     </div>
   );
 };
