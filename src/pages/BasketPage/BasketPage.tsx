@@ -4,6 +4,7 @@ import { IBasket, fetchBasket } from "../../features/basketSlice";
 import styles from "./basketPage.module.scss";
 import Basket from "../../components/Basket/BasketCard";
 import CreditCard from "../../components/CreaditCard/CreditCard";
+import BasketEmpty from "../../components/BasketEmpty/BasketEmpty";
 
 const BasketPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,31 +17,38 @@ const BasketPage: FC = () => {
     user && dispatch(fetchBasket({ id: user.basket }));
   }, [user, dispatch]);
 
-  return (
-    <div className={styles.basketPage}>
-      <div className={styles.products}>
-        <div className={styles.navBlock}>
-          <div className={styles.navInfo}>
-            <div>Описание товара</div>
-            <div>Цена</div>
-            <div>Колличество</div>
-            <div>Итого</div>
-            <div>Купить</div>
-            <div>Удалить</div>
+  if (basket.length){
+    return (
+      <div className={styles.basketPage}>
+        <div className={styles.products}>
+          <div className={styles.navBlock}>
+            <div className={styles.navInfo}>
+              <div>Описание товара</div>
+              <div>Цена</div>
+              <div>Колличество</div>
+              <div>Итого</div>
+              <div>Купить</div>
+              <div>Удалить</div>
+            </div>
           </div>
+          {basket.map((item) => (
+            <Basket
+              key={item.product._id}
+              product={item.product}
+              size={item?.size}
+            />
+          ))}
         </div>
-        {basket.map((item) => (
-          <Basket
-            key={item.product._id}
-            product={item.product}
-            size={item?.size}
-          />
-        ))}
+  
+        <CreditCard />
       </div>
+    );
+  }else{
+    return(
+      <BasketEmpty />
+    )
+  }
 
-      <CreditCard />
-    </div>
-  );
 };
 
 export default BasketPage;
