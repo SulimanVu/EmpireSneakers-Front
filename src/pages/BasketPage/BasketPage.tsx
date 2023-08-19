@@ -4,6 +4,7 @@ import { IBasket, fetchBasket } from "../../features/basketSlice";
 import styles from "./basketPage.module.scss";
 import Basket from "../../components/Basket/BasketCard";
 import CreditCard from "../../components/CreaditCard/CreditCard";
+import BasketEmpty from "../../components/BasketEmpty/BasketEmpty";
 
 const BasketPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,9 @@ const BasketPage: FC = () => {
     user && dispatch(fetchBasket({ id: user.basket }));
   }, [user, dispatch]);
 
+  if (!basket.length) {
+    return <BasketEmpty />;
+  }
   return (
     <div className={styles.basketPage}>
       <div className={styles.products}>
@@ -37,7 +41,6 @@ const BasketPage: FC = () => {
           />
         ))}
       </div>
-
       <CreditCard />
     </div>
   );
