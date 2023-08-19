@@ -25,8 +25,8 @@ const BasketPage: FC = () => {
       <div className={styles.products}>
         <div className={styles.navBlock}>
           <div className={styles.navInfo}>
-            <div>Описание товара</div>
-            <div>Цена</div>
+            <div className={styles.displayMin}>Описание товара</div>
+            <div className={styles.displayMin}>Цена</div>
             <div>Колличество</div>
             <div>Итого</div>
             <div>Купить</div>
