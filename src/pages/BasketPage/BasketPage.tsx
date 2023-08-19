@@ -5,6 +5,7 @@ import styles from "./basketPage.module.scss";
 import Basket from "../../components/Basket/BasketCard";
 import CreditCard from "../../components/CreaditCard/CreditCard";
 import BasketEmpty from "../../components/BasketEmpty/BasketEmpty";
+import Error404 from "../../components/Error404/Error404";
 
 const BasketPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ const BasketPage: FC = () => {
   }, [user, dispatch]);
 
   if (!basket.length) {
-    return <BasketEmpty />;
+    return <Error404 />;
   }
   return (
     <div className={styles.basketPage}>
