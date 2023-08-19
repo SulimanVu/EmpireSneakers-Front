@@ -17,38 +17,33 @@ const BasketPage: FC = () => {
     user && dispatch(fetchBasket({ id: user.basket }));
   }, [user, dispatch]);
 
-  if (basket.length){
-    return (
-      <div className={styles.basketPage}>
-        <div className={styles.products}>
-          <div className={styles.navBlock}>
-            <div className={styles.navInfo}>
-              <div>Описание товара</div>
-              <div>Цена</div>
-              <div>Колличество</div>
-              <div>Итого</div>
-              <div>Купить</div>
-              <div>Удалить</div>
-            </div>
-          </div>
-          {basket.map((item) => (
-            <Basket
-              key={item.product._id}
-              product={item.product}
-              size={item?.size}
-            />
-          ))}
-        </div>
-  
-        <CreditCard />
-      </div>
-    );
-  }else{
-    return(
-      <BasketEmpty />
-    )
+  if (!basket.length) {
+    return <BasketEmpty />;
   }
-
+  return (
+    <div className={styles.basketPage}>
+      <div className={styles.products}>
+        <div className={styles.navBlock}>
+          <div className={styles.navInfo}>
+            <div>Описание товара</div>
+            <div>Цена</div>
+            <div>Колличество</div>
+            <div>Итого</div>
+            <div>Купить</div>
+            <div>Удалить</div>
+          </div>
+        </div>
+        {basket.map((item) => (
+          <Basket
+            key={item.product._id}
+            product={item.product}
+            size={item?.size}
+          />
+        ))}
+      </div>
+      <CreditCard />
+    </div>
+  );
 };
 
 export default BasketPage;
