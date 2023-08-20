@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import styles from "./mainslider.module.scss";
+import styles from "./mainSlider.module.scss"
 import RightArrowSVG from "../../assets/icons/RightArrowSVG";
 import LeftArrowSVG from "../../assets/icons/LeftArrowSVG";
 
@@ -24,10 +24,10 @@ const MainSlider: FC = () => {
     <div className={styles.sliderContainer}>
       <div className={styles.sliderController}>
         <button className={styles.prevBtn} onClick={prevSlide}>
-          <LeftArrowSVG />
+          <LeftArrowSVG className={styles.arrowControl} />
         </button>
         <button className={styles.nextBtn} onClick={nextSlide}>
-          <RightArrowSVG />
+          <RightArrowSVG className={styles.arrowControl} />
         </button>
       </div>
       <div className={styles.activeSlideContainer}>
