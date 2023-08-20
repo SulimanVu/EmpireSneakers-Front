@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import styles from "./mainslider.module.scss";
-import slidPrev from "../../assets/icons/sliderMain_control_prev.png";
-import slidNext from "../../assets/icons/sliderMain_control_next.png";
+import RightArrowSVG from "../../assets/icons/RightArrowSVG";
+import LeftArrowSVG from "../../assets/icons/LeftArrowSVG";
 
 const MainSlider: FC = () => {
   const slides: string[] = [
@@ -24,10 +24,10 @@ const MainSlider: FC = () => {
     <div className={styles.sliderContainer}>
       <div className={styles.sliderController}>
         <button className={styles.prevBtn} onClick={prevSlide}>
-          <img src={slidPrev} alt="кнопка предедущий" />
+          <LeftArrowSVG />
         </button>
         <button className={styles.nextBtn} onClick={nextSlide}>
-          <img src={slidNext} alt="кнопка следущий" />
+          <RightArrowSVG />
         </button>
       </div>
       <div className={styles.activeSlideContainer}>
