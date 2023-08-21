@@ -6,7 +6,6 @@ import {
   addToFavorite,
   deleteToFavorite,
 } from "../../features/favoriteSlice";
-import { addToBasket } from "../../features/basketSlice";
 import HeartSVG from "../../assets/icons/HeartSVG";
 import CustomAlert from "../Alert/CustomAlert";
 import { alertState } from "../Alert/alertState";
@@ -73,12 +72,6 @@ const ProductCard: FC<ProductCardProps> = ({
     }
   };
 
-  const handleAddBasket = () => {
-    if (userId) {
-      dispatch(addToBasket({ id: user.basket, productId: _id, size: 40 }));
-    }
-  };
-
   return (
     <>
       {openAlert && (
@@ -103,9 +96,6 @@ const ProductCard: FC<ProductCardProps> = ({
             </div>
             <button>${price}</button>
           </div>
-          <button onClick={handleAddBasket} className={styles.buy}>
-            В корзину
-          </button>
         </div>
       </div>
     </>
