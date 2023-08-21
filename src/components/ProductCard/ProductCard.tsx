@@ -36,7 +36,8 @@ const ProductCard: FC<ProductCardProps> = ({
 
   // Нужно перенести эту логику на страницу с полным описанием товара
   // Заменить везда цифру 40 на нужный размер
-  const handleAddFavorite = () => {
+  const handleAddFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (userId) {
       if (!favorites) {
         dispatch(
