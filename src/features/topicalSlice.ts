@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Topical {
   _id: string;
-    slides:[{img : string, url: string}]
+  slides: [{ img: string; url: string }];
 }
 
 interface TopicalState {
@@ -13,10 +13,10 @@ const initialState: TopicalState = {
   topicals: [],
 };
 
-export const fetchTopicals = createAsyncThunk<Topical[]>(
+export const fetchTopicals = createAsyncThunk<Topical[], string>(
   "topicals/fetch",
-  async (_, { rejectWithValue }) => {
-    const res = await fetch("http://localhost:3010/topical");
+  async (id, { rejectWithValue }) => {
+    const res = await fetch(`http://localhost:3010/topical/${id}`);
     if (!res.ok) {
       return rejectWithValue("server error");
     }
@@ -26,12 +26,17 @@ export const fetchTopicals = createAsyncThunk<Topical[]>(
 );
 
 const topicalSlice = createSlice({
-    name: "topical",
-    initialState,
-    reducers: {},
-    extraReducers: (buidler) => {
-        buidler.addCase( fetchTopicals.fulfilled, (state: TopicalState, action: PayloadAction<Topical[]>) => {
-            state.topicals = action.payload
-        })
-    }
-})
+  name: "topical",
+  initialState,
+  reducers: {},
+  extraReducers: (buidler) => {
+    buidler.addCase(
+      fetchTopicals.fulfilled,
+      (state: TopicalState, action: PayloadAction<Topical[]>) => {
+        state.topicals = action.payload;
+      }
+    );
+  },
+});
+
+export default topicalSlice.reducer;
