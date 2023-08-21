@@ -44,10 +44,7 @@ const ProductDetail: React.FC = () => {
         setCurrentSlide(+index);
     };
 
-    const handleAddBasket = () => {
-
-    }
-
+   
     return (
         <>
             <Header />
@@ -115,7 +112,7 @@ const ProductDetail: React.FC = () => {
                         </li>
                     </ul>
                     <div className={styles.add_cart}>
-                        <div onClick={handleAddBasket} className={styles.cart_btn}><BusketSVG /> Add to cart</div>
+                        <div  className={styles.cart_btn}><BusketSVG /> Add to cart</div>
                         <div className={styles.cart_count}>₽{product?.price}</div>
                     </div>
                     <div className={styles.line}></div>
