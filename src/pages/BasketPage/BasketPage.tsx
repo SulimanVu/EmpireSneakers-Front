@@ -20,6 +20,7 @@ const BasketPage: FC = () => {
   if (!basket.length) {
     return <BasketEmpty />;
   }
+  
   return (
     <div className={styles.basketPage}>
       <div className={styles.products}>
