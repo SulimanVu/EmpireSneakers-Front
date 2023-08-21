@@ -7,8 +7,11 @@
   align-items: center;
   justify-content: center;
   img {
-    width: 40%;
+    position: relative;
+    width: 25%;
     margin: 5px;
+    z-index: 2;
+    object-fit: cover;
   }
   span {
     font-size: 30px;
@@ -24,5 +27,6 @@
     color: white;
     font-size: 18px;
     font-style: italic;
+    cursor: pointer;
   }
 }
