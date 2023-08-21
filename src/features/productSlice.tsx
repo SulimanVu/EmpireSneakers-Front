@@ -69,6 +69,25 @@ const productSlice = createSlice({
       );
       state.currentCategory = action.payload;
     },
+    priceFilter(state, action: PayloadAction<{ min: number; max: number }>) {
+      const sortWithCategory = state.products.filter((product) =>
+        product.categories.find(
+          (category) => category._id === state.currentCategory
+        )
+      );
+
+      sortWithCategory.length > 0
+        ? (state.sortedProduct = sortWithCategory.filter(
+            (product) =>
+              product.price > action.payload.min &&
+              product.price < action.payload.max
+          ))
+        : (state.sortedProduct = state.products.filter(
+            (product) =>
+              product.price > action.payload.min &&
+              product.price < action.payload.max
+          ));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -86,5 +105,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { filterProduct } = productSlice.actions;
+export const { filterProduct, priceFilter } = productSlice.actions;
 export default productSlice.reducer;

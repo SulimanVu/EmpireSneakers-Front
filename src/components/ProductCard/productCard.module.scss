@@ -11,6 +11,7 @@
     display: grid;
     place-items: center;
     border-radius: 8px;
+    border: 3px solid $secondary
   }
   .favorite {
     position: absolute;
@@ -22,6 +23,10 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    cursor: pointer;
+    .active {
+      fill: $text-silver;
+    }
   }
   .productInfo {
     display: flex;

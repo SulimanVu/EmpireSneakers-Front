@@ -3,7 +3,8 @@
 .profile {
   display: flex;
   aside {
-    margin-left: 5%;
+    margin-left: 3%;
+    margin-right: 10px;
     width: 300px;
     white-space: nowrap;
     h2 {
@@ -17,43 +18,5 @@
       color: $text-silver;
       font-weight: normal;
     }
-    ul {
-      margin-top: 40px;
-      list-style-type: none;
-      padding: 0;
-      li {
-        display: flex;
-        align-items: center;
-        border-left: 4px solid transparent;
-        padding: 11px 0 11px 35px;
-        margin-bottom: 8px;
-        transition: 0.4s;
-        cursor: pointer;
-        &:hover {
-          background-color: $secondary;
-          border-left: 4px solid $black-silver;
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-        }
-        div {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 17px;
-          img {
-            width: 22px;
-          }
-        }
-      }
-      .active {
-        background-color: $secondary;
-        border-left: 4px solid $black-silver;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-      }
-    }
-  }
-  main {
-    margin: 0;
   }
 }

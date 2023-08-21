@@ -8,6 +8,14 @@ $black-silver: #2a2f2f;
 body {
   margin: 0;
 }
+body::-webkit-scrollbar {
+  width: 3px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $basic; /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+  border: 3px solid $basic; /* отступ вокруг бегунка */
+}
 a:active,
 a:hover,
 a {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./profile.module.scss";
 import { useAppSelector } from "../../app/hook";
-import profile from "../../assets/icons/profile.svg";
+import ProfileSVG from "../../assets/icons/ProfileSVG";
 
 const Profile = () => {
   const user = useAppSelector((state) => state.userSlice.user);
@@ -14,16 +14,7 @@ const Profile = () => {
 
   return (
     <div className={styles.profile}>
-      <h1>Profile</h1>
-
-      <div className={styles.avatar}>
-        {user?.avatar ? (
-          <img src={`http://localhost:3010/${user.avatar}`} alt="avatar" />
-        ) : (
-          <img src={profile} alt="avatar" />
-        )}
-      </div>
-
+      <h2>Контактные данные</h2>
       <section className={styles.inputsBlock}>
         <div className={styles.input}>
           <div>

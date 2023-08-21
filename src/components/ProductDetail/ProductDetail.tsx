@@ -15,6 +15,7 @@ const ProductDetail: React.FC = () => {
     const product = useAppSelector(
         (state) => state.productSlice.oneProduct
     )
+    
     useEffect(() => {
         id && dispatch(fetchOneProduct(id))
     }, [dispatch])
@@ -26,6 +27,7 @@ const ProductDetail: React.FC = () => {
     ];
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
+    
     const showSlide = (index: number): void => {
         setCurrentSlide(index);
     };
@@ -41,6 +43,10 @@ const ProductDetail: React.FC = () => {
     const handleScroll = (index: React.MouseEvent<HTMLDivElement>): void => {
         setCurrentSlide(+index);
     };
+
+    const handleAddBasket = () => {
+
+    }
 
     return (
         <>
@@ -109,7 +115,7 @@ const ProductDetail: React.FC = () => {
                         </li>
                     </ul>
                     <div className={styles.add_cart}>
-                        <div className={styles.cart_btn}><BusketSVG /> Add to cart</div>
+                        <div onClick={handleAddBasket} className={styles.cart_btn}><BusketSVG /> Add to cart</div>
                         <div className={styles.cart_count}>₽{product?.price}</div>
                     </div>
                     <div className={styles.line}></div>
