@@ -27,9 +27,8 @@ const ProfileNav: FC = () => {
         onClick={navigateHandler}
         title="basket"
       >
-        <div>
-          <OrderSVG />
-        </div>
+        <OrderSVG />
+
         <span>Моя корзина</span>
       </li>
       <li
@@ -37,9 +36,7 @@ const ProfileNav: FC = () => {
         onClick={navigateHandler}
         title="favorites"
       >
-        <div>
-          <Heart />
-        </div>
+        <Heart />
         <span>Избранные</span>
       </li>
       <li
@@ -47,15 +44,11 @@ const ProfileNav: FC = () => {
         onClick={navigateHandler}
         title="personal_info"
       >
-        <div>
-          <ProfileSVG />
-        </div>
+        <ProfileSVG />
         <span>Мой аккаунт</span>
       </li>
       <li onClick={navigateHandler} title="logOut">
-        <div>
-          <SignOutSVG />
-        </div>
+        <SignOutSVG />
         <span>Выйти из аккаунта</span>
       </li>
     </ul>
