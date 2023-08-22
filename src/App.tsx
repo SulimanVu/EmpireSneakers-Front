@@ -10,8 +10,12 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Favorites from "./components/Favorites/Favorites";
 import BasketPage from "./pages/BasketPage/BasketPage";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
+import AdminPage from "./pages/AdminPage/AdminPage";
+import Error404 from "./components/Error404/Error404";
+import { useAppSelector } from "./app/hook";
 
 function App() {
+  const user = useAppSelector((state) => state.userSlice.user);
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -60,6 +64,10 @@ function App() {
     {
       path: "/productDetail/:id",
       element: <ProductDetail />,
+    },
+    {
+      path: "/admin/:id",
+      element: user.admin ? <AdminPage /> : <Error404 />,
     },
   ]);
 
