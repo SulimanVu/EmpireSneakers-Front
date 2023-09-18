@@ -2,18 +2,22 @@ import { FC, useEffect } from "react";
 import styles from "./header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { fetchGlobalCategories } from "../../features/globalCategorySlice";
-import logo from "../../assets/icons/logo.png";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
 import { fetchProducts, filterProduct } from "../../features/productSlice";
 import { getUser } from "../../features/userSlice";
-import BusketSVG from "../../assets/icons/BusketSVG";
+import logo from "../../assets/icons/logo.png";
+import HeartSVG from "../../assets/icons/HeartSVG";
+import ProfileSVG from "../../assets/icons/ProfileSVG";
+import OrderSVG from "../../assets/icons/OrderSVG";
 
 const Header: FC = () => {
   const { id } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const location = useLocation();
+  const path: string[] = location.pathname.split("/");
+
   const userId: string | null | undefined = useAppSelector(
     (state) => state.applicationSlice.userId
   );
@@ -41,12 +45,12 @@ const Header: FC = () => {
     userId && dispatch(getUser({ id: userId }));
   }, [dispatch, userId]);
 
-  const path: string[] = location.pathname.split("/");
-
   return (
     <div className={styles.header}>
       <header>
-        <img src={logo} alt="logo" />
+        <Link to={"/"}>
+          <img src={logo} alt="logo" />
+        </Link>
         <ul>
           {globalCategories.map((item) => (
             <li
@@ -80,17 +84,7 @@ const Header: FC = () => {
             name="favorites"
             className={path.includes("favorites") ? styles.active : styles.none}
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M9.99486 4.93029C8.49535 3.18277 5.99481 2.7127 4.11602 4.3129C2.23723 5.9131 1.97273 8.58855 3.44815 10.4811C4.67486 12.0547 8.38733 15.3734 9.60407 16.4475C9.7402 16.5677 9.80827 16.6278 9.88766 16.6514C9.95695 16.672 10.0328 16.672 10.1021 16.6514C10.1815 16.6278 10.2495 16.5677 10.3857 16.4475C11.6024 15.3734 15.3149 12.0547 16.5416 10.4811C18.017 8.58855 17.7848 5.89627 15.8737 4.3129C13.9626 2.72953 11.4944 3.18277 9.99486 4.93029Z"
-                stroke="#807D7E"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <HeartSVG />
           </button>
           <button
             onClick={handleClick}
@@ -99,21 +93,15 @@ const Header: FC = () => {
               path.includes("personal_info") ? styles.active : styles.none
             }
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path
-                d="M9.99967 11.6668C12.3009 11.6668 14.1663 9.80135 14.1663 7.50016C14.1663 5.19898 12.3009 3.3335 9.99967 3.3335C7.69849 3.3335 5.83301 5.19898 5.83301 7.50016C5.83301 9.80135 7.69849 11.6668 9.99967 11.6668ZM9.99967 11.6668C6.31778 11.6668 3.33301 13.9054 3.33301 16.6668M9.99967 11.6668C13.6816 11.6668 16.6663 13.9054 16.6663 16.6668"
-                stroke="#807D7E"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
+            <ProfileSVG />
           </button>
           <button
             onClick={handleClick}
             name="basket"
             className={path.includes("basket") ? styles.active : styles.none}
           >
-           <BusketSVG/>
+
+            <OrderSVG />
           </button>
         </div>
       </header>

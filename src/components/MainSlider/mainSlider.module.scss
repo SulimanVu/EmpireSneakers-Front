@@ -1,0 +1,31 @@
+.sliderContainer{
+    position: relative;
+    width: 100%;
+    img{
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+    .sliderController{
+        .prevBtn{
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 3%;
+            background-color: transparent;
+        }
+        .nextBtn{
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 95%;
+            background-color: transparent;
+        }
+        .arrowControl{
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+}
+

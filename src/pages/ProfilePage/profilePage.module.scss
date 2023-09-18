@@ -19,4 +19,8 @@
       font-weight: normal;
     }
   }
+  main{
+    margin: 0px;
+    min-height: calc(100vh - $header-size);
+  }
 }

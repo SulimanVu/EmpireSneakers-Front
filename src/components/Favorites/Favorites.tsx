@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { IFavorite, fetchFavorites } from "../../features/favoriteSlice";
 import styles from "./favorites.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
+import FavoritEmpty from "../FavoritEmpty/FavoritEmpty";
 
 const Favorites: FC = () => {
   const dispatch = useAppDispatch();
@@ -13,8 +14,11 @@ const Favorites: FC = () => {
 
   useEffect(() => {
     user && dispatch(fetchFavorites({ id: user.favorite }));
-  }, [user, dispatch]);
+  }, [user, dispatch]);  
 
+  if( !favorites.length ){
+    return <FavoritEmpty />
+  }
   return (
     <div className={styles.favoriteBlock}>
       {favorites.map((item) => {

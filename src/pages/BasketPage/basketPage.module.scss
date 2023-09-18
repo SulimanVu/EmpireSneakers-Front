@@ -12,12 +12,26 @@
         width: 95%;
         display: grid;
         align-items: center;
-        gap: 50px;
+        column-gap: 50px;
         grid-template-columns: 5fr 2fr 2fr 2fr 2fr 2fr;
         text-align: center;
         font-size: 18px;
         font-style: italic;
         text-transform: uppercase;
+        @media screen and (max-width: 1000px) {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 160px;
+        }
+        div {
+          @media screen and (max-width: 1000px) {
+            display: none;
+          }
+        }
+        .displayMin {
+          @media screen and (max-width: 1000px) {
+            display: block;
+          }
+        }
       }
     }
   }

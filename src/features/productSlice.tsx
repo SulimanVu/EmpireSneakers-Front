@@ -13,22 +13,26 @@ export interface Product {
   categories: Category[];
   globalCategory: GlobalCategories;
   comments: string[];
-  rating:number;
+  rating: number;
   sizes: [{ size: number; quantity: number }];
 }
 
 interface ProductState {
-  oneProduct:Product | null;
+  oneProduct: Product | null;
   products: Product[];
   sortedProduct: Product[];
   currentCategory: string;
+  loading: boolean;
+  error: boolean;
 }
 
 const initialState: ProductState = {
-  oneProduct:null,
+  oneProduct: null,
   products: [],
   sortedProduct: [],
   currentCategory: "",
+  loading: false,
+  error: false,
 };
 
 export const fetchProducts = createAsyncThunk<Product[]>(
@@ -39,12 +43,11 @@ export const fetchProducts = createAsyncThunk<Product[]>(
     if (!res.ok) {
       return rejectWithValue("server error");
     }
-   
 
-    return res.json()
+    return res.json();
   }
 );
-export const fetchOneProduct = createAsyncThunk<Product,string>(
+export const fetchOneProduct = createAsyncThunk<Product, string>(
   "one/products/fetch",
   async (id, { rejectWithValue }) => {
     const res = await fetch(`http://localhost:3010/product/${id}`);
@@ -52,12 +55,10 @@ export const fetchOneProduct = createAsyncThunk<Product,string>(
     if (!res.ok) {
       return rejectWithValue("server error");
     }
-   
 
-    return res.json()
+    return res.json();
   }
 );
-
 
 const productSlice = createSlice({
   name: "product",
@@ -91,17 +92,35 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(
-      fetchProducts.fulfilled,
-      (state: ProductState, action: PayloadAction<Product[]>) => {
-        state.products = action.payload;
-        state.sortedProduct = action.payload;
-      }
-    )
-    .addCase(fetchOneProduct.fulfilled, 
-      (state, action,) => {
-        state.oneProduct = action.payload
+      .addCase(
+        fetchProducts.fulfilled,
+        (state: ProductState, action: PayloadAction<Product[]>) => {
+          state.products = action.payload;
+          state.sortedProduct = action.payload;
+          state.loading = false;
+          state.error = false;
+        }
+      )
+      .addCase(fetchProducts.pending, (state: ProductState) => {
+        state.loading = true;
+        state.error = false;
       })
+      .addCase(fetchProducts.rejected, (state: ProductState) => {
+        state.loading = true;
+        state.error = true;
+      })
+      
+      .addCase(fetchOneProduct.fulfilled, (state, action) => {
+        state.oneProduct = action.payload;
+      })
+      .addCase(fetchOneProduct.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(fetchOneProduct.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      });
   },
 });
 

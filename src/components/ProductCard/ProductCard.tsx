@@ -6,17 +6,17 @@ import {
   addToFavorite,
   deleteToFavorite,
 } from "../../features/favoriteSlice";
-import { addToBasket } from "../../features/basketSlice";
 import HeartSVG from "../../assets/icons/HeartSVG";
 import CustomAlert from "../Alert/CustomAlert";
 import { alertState } from "../Alert/alertState";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   _id: string;
   name: string;
   title: string;
   price: number;
-  photo: string;
+  photo: [string];
 }
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -26,6 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({
   price,
   photo,
 }) => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.applicationSlice.userId);
   const user = useAppSelector((state) => state.userSlice.user);
@@ -39,9 +40,9 @@ const ProductCard: FC<ProductCardProps> = ({
   const [message, setMessage] = useState("");
   const [alert, setAlert] = useState<alertState>(alertState.success);
 
-  // Нужно перенести эту логику на страницу с полным описанием товара
   // Заменить везда цифру 40 на нужный размер
-  const handleAddFavorite = () => {
+  const handleAddFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (userId) {
       if (!favorites) {
         dispatch(
@@ -73,12 +74,6 @@ const ProductCard: FC<ProductCardProps> = ({
     }
   };
 
-  const handleAddBasket = () => {
-    if (userId) {
-      dispatch(addToBasket({ id: user.basket, productId: _id, size: 40 }));
-    }
-  };
-
   return (
     <>
       {openAlert && (
@@ -88,7 +83,7 @@ const ProductCard: FC<ProductCardProps> = ({
           message={message}
         />
       )}
-      <div className={styles.product}>
+      <div className={styles.product} onClick={()=> navigate(`/productDetail/${_id}`)}>
         <div className={styles.productImg}>
           <img src={`http://localhost:3010/${photo[0]}`} alt="Футболка" />
         </div>
@@ -103,9 +98,6 @@ const ProductCard: FC<ProductCardProps> = ({
             </div>
             <button>${price}</button>
           </div>
-          <button onClick={handleAddBasket} className={styles.buy}>
-            В корзину
-          </button>
         </div>
       </div>
     </>
