@@ -5,10 +5,11 @@
   list-style-type: none;
   padding: 0;
   li {
-    display: flex;
+    display: grid;
+    grid-template-columns: 45px auto;
     align-items: center;
     border-left: 4px solid transparent;
-    padding: 11px 0 11px 35px;
+    padding: 11px 0 11px 25px;
     margin-bottom: 8px;
     transition: 0.4s;
     cursor: pointer;
@@ -17,15 +18,6 @@
       border-left: 4px solid $black-silver;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
-    }
-    div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 17px;
-      img {
-        width: 22px;
-      }
     }
   }
   .active {
