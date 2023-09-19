@@ -36,7 +36,7 @@ const BasketPage: FC = () => {
         </div>
         {basket.map((item) => (
           <Basket
-            key={item.product._id}
+            key={item?.product?._id}
             product={item.product}
             size={item?.size}
           />

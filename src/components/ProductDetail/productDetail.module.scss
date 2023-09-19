@@ -1,50 +1,50 @@
 .product_detail {
   display: flex;
 
-  .product_detail_img {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    background: #f6f6f6;
+  // .product_detail_img {
+  //   display: flex;
+  //   align-items: center;
+  //   width: 50%;
+  //   background: #f6f6f6;
 
-    .slider_controls_container {
-      margin-right: 35px;
-      margin-left: auto;
+  //   .slider_controls_container {
+  //     margin-right: 35px;
+  //     margin-left: auto;
 
-      .slide {
-        margin: auto 0;
-        margin-bottom: 10px;
-      }
-      img {
-        width: 68px;
-        height: 68px;
-        border-radius: 9.072px;
-      }
+  //     .slide {
+  //       margin: auto 0;
+  //       margin-bottom: 10px;
+  //     }
+  //     img {
+  //       width: 68px;
+  //       height: 68px;
+  //       border-radius: 9.072px;
+  //     }
 
-      .controls button {
-        display: block;
-        background: none;
-        margin: 0 auto;
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-    .active_slide_container img {
-      width: 520px;
-      height: 650px;
-    }
+  //     .controls button {
+  //       display: block;
+  //       background: none;
+  //       margin: 0 auto;
+  //       img {
+  //         width: 20px;
+  //         height: 20px;
+  //       }
+  //     }
+  //   }
+  //   .active_slide_container img {
+  //     width: 520px;
+  //     height: 650px;
+  //   }
 
-    .slide {
-      border: none;
-    }
-    .active_slide {
-      padding: 5px;
-      border-radius: 12.096px;
-      border: 0.756px solid #3c4242;
-    }
-  }
+  //   .slide {
+  //     border: none;
+  //   }
+  //   .active_slide {
+  //     padding: 5px;
+  //     border-radius: 12.096px;
+  //     border: 0.756px solid #3c4242;
+  //   }
+  // }
   .product_descr {
     padding-left: 75px;
     padding-top: 30px;
@@ -164,6 +164,7 @@
         width: 38px;
         height: 38px;
         margin-right: 25px;
+        margin-bottom: 25px;
         padding: 10px;
         border-radius: 12px;
         border: 1.5px solid #bebcbd;
@@ -173,12 +174,106 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        cursor: pointer;
 
         &:hover {
-          color: #FFF;
-          background: #3C4242;
-
+          color: #fff;
+          background: #3c4242;
         }
+      }
+    }
+    .colours_title {
+      margin-bottom: 25px;
+      color: #3f4646;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 100;
+      line-height: normal;
+    }
+
+    .colors_list {
+      list-style: none;
+      margin-bottom: 35px;
+      li {
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div {
+          background-color: black;
+          width: 18px;
+          height: 18px;
+          border-radius: 100%;
+        }
+      }
+    }
+    .add_cart {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      .cart_btn {
+        display: flex;
+        align-items: center;
+        margin-right: 30px;
+        padding: 10px 35px;
+        border-radius: 8px;
+        background: #8a33fd;
+        color: #fff;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 100;
+        line-height: normal;
+        cursor: pointer;
+
+        svg {
+          margin-right: 12px;
+          path {
+            stroke: #fff;
+          }
+        }
+      }
+      .cart_count {
+        padding: 10px 35px;
+        border-radius: 8px;
+        border: 1px solid #3c4242;
+        cursor: pointer;
+      }
+    }
+    .line {
+      border-bottom: 1px solid #bebcbd;
+      margin-bottom: 40px;
+    }
+    .possibilities_product {
+      width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0;
+      justify-content: space-between;
+
+      div {
+        cursor: pointer;
+      }
+      span {
+        width: 100%;
+        color: #3c4242;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+      svg {
+        margin-right: 15px;
+      }
+      .possibilities_product_inner > div {
+        display: flex;
+        align-items: center;
       }
     }
   }

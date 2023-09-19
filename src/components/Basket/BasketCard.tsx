@@ -29,16 +29,18 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
       deleteInBasket({ _id: user.basket, product: product._id, size: size })
     );
   };
+  console.log(product);
+  
   return (
     <div className={styles.basketCard}>
       <div className={styles.productDetails}>
-        <img src={`http://localhost:3010/${product.photo[0]}`} alt="image" />
+        <img src={`http://localhost:3010/${product?.photo[0]}`} alt="image" />
         <div className={styles.description}>
-          <h5>{product.name}</h5>
+          <h5>{product?.name}</h5>
           <span>Размер: {size}</span>
         </div>
       </div>
-      <div className={styles.price}>{product.price}</div>
+      <div className={styles.price}>{product?.price}</div>
       <div className={styles.amount}>
         <div onClick={handleAmoutDec}>
           <DecrementSVG />
@@ -48,7 +50,7 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
           <IncrementSVG />
         </div>
       </div>
-      <div className={styles.total}>{product.price * value}</div>
+      <div className={styles.total}>{product?.price * value}</div>
       <button className={styles.buy}>Купить</button>
       <div onClick={handleDeleteProduct} className={styles.delete}>
         <DeleteSVG />

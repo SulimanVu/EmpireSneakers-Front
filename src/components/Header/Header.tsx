@@ -87,15 +87,13 @@ const Header: FC = () => {
           >
             <ProfileSVG />
           </button>
-          {user.admin && (
-            <Link to={`/admin/${user._id}`}>
-              <button
-                className={path.includes("admin") ? styles.active : styles.none}
-              >
-                <SettingsSVG />
-              </button>
-            </Link>
-          )}
+          <button
+            onClick={handleClick}
+            name="basket"
+            className={path.includes("basket") ? styles.active : styles.none}
+          >
+            <OrderSVG />
+          </button>
         </div>
       </header>
     </div>
