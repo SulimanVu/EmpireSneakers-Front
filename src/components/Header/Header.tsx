@@ -100,7 +100,6 @@ const Header: FC = () => {
             name="basket"
             className={path.includes("basket") ? styles.active : styles.none}
           >
-
             <OrderSVG />
           </button>
         </div>
