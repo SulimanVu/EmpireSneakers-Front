@@ -6,8 +6,8 @@ import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
 import { fetchProducts, filterProduct } from "../../features/productSlice";
 import { getUser } from "../../features/userSlice";
 import logo from "../../assets/icons/logo.png";
-import HeartSVG from "../../assets/icons/HeartSVG";
 import ProfileSVG from "../../assets/icons/ProfileSVG";
+import SettingsSVG from "../../assets/icons/SettingsSVG";
 import OrderSVG from "../../assets/icons/OrderSVG";
 
 const Header: FC = () => {
@@ -21,6 +21,7 @@ const Header: FC = () => {
   const userId: string | null | undefined = useAppSelector(
     (state) => state.applicationSlice.userId
   );
+  const user = useAppSelector((state) => state.userSlice.user);
   const globalCategories = useAppSelector(
     (state) => state.globalCategory.globalCategories
   );
@@ -30,11 +31,11 @@ const Header: FC = () => {
     dispatch(filterProduct(""));
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleNavProfile = () => {
     const token = localStorage.getItem("token");
     !token
       ? navigate("/authorization/signup")
-      : navigate("/my_accaunt/" + e.currentTarget.name);
+      : navigate("/my_accaunt/personal_info");
   };
 
   useEffect(() => {
@@ -80,29 +81,29 @@ const Header: FC = () => {
 
         <div className={styles.buttons}>
           <button
-            onClick={handleClick}
-            name="favorites"
-            className={path.includes("favorites") ? styles.active : styles.none}
-          >
-            <HeartSVG />
-          </button>
-          <button
-            onClick={handleClick}
-            name="personal_info"
+            onClick={handleNavProfile}
             className={
-              path.includes("personal_info") ? styles.active : styles.none
+              path.includes("my_accaunt") ? styles.active : styles.none
             }
           >
             <ProfileSVG />
           </button>
           <button
-            onClick={handleClick}
             name="basket"
             className={path.includes("basket") ? styles.active : styles.none}
           >
 
             <OrderSVG />
           </button>
+          {user.admin && (
+            <Link to={`/admin/${user._id}`}>
+              <button
+                className={path.includes("admin") ? styles.active : styles.none}
+              >
+                <SettingsSVG />
+              </button>
+            </Link>
+          )}
         </div>
       </header>
     </div>
