@@ -65,7 +65,6 @@ const sizes = useAppSelector((state) => state.productSlice.products)
             size: sizes
             
         }));
-        console.log(user);
     };
 
   
@@ -75,35 +74,6 @@ const sizes = useAppSelector((state) => state.productSlice.products)
             <Header />
             <div className={styles.product_detail}>
             <Slider/>
-                {/* <div className={styles.product_detail_img}>
-                    <div className={styles.slider_controls_container}>
-
-                        {slides.map((slide, index) => (
-                            <div
-                                key={index}
-                                className={`${styles.slide} ${index === currentSlide ? styles.active : ""
-                                    }`}
-                                onClick={() => handleScroll(index)}
-                            >
-                                <img className={`${styles.slide} ${index === currentSlide ? styles.active_slide : ""
-                                    }`} src={slide} alt={`Slide ${index + 1}`} />
-                            </div>
-                        ))}
-
-                        <div className={styles.controls}>
-                            <button id="prevButton" onClick={prevSlide}>
-                                <img src={arrow_top} />
-                            </button>
-                            <button id="nextButton" onClick={nextSlide}>
-                                <img src={arrow_bottom} />
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className={styles.active_slide_container}>
-                        <img src={slides[currentSlide]} alt="Active Slide" />
-                    </div>
-                </div> */}
                 <div className={styles.product_descr}>
                     <h1 className={styles.descr_title}>{product?.title}</h1>
                     <div className={styles.rating_info}>

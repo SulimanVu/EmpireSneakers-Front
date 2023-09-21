@@ -19,14 +19,7 @@ const Slider = () => {
         (state) => state.productSlice.oneProduct
     ) as Product
 
-console.log(product?.photo);
 
-
-    // useEffect(() => {
-    //     id && dispatch(fetchOneProduct(id))
-        
-        
-    // }, [dispatch])
 
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
