@@ -26,32 +26,7 @@ const ProductDetail: React.FC = () => {
         
     }, [dispatch])
     
- 
-
-    // const slides: string[] = [
-    //     "https://fikiwiki.com/uploads/posts/2022-02/1644972802_1-fikiwiki-com-p-kartinki-krasivie-na-android-1.jpg",
-    //     "https://img1.akspic.ru/previews/7/4/7/9/6/169747/169747-ikanvas-art-pechat_na_holste-poster-oblako-500x.jpg",
-    //     "https://img3.akspic.ru/previews/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-500x.jpg",
-    // ];
-    // const [currentSlide, setCurrentSlide] = useState<number>(0);
-
-    
-    // const showSlide = (index: number): void => {
-    //     setCurrentSlide(index);
-    // };
-
-    // const nextSlide = (): void => {
-    //     setCurrentSlide((currentSlide + 1) % slides.length);
-    // };
-
-    // const prevSlide = (): void => {
-    //     setCurrentSlide((currentSlide - 1 + slides.length) % slides.length);
-    // };
-
-    // const handleScroll = (index: React.MouseEvent<HTMLDivElement>): void => {
-    //     setCurrentSlide(+index);
-    // };
-
+  
     const user = useAppSelector((state) => state.userSlice.user.basket);
 const sizes = useAppSelector((state) => state.productSlice.products)
 
@@ -65,45 +40,13 @@ const sizes = useAppSelector((state) => state.productSlice.products)
             size: sizes
             
         }));
-        console.log(user);
     };
-
-  
    
     return (
         <>
             <Header />
             <div className={styles.product_detail}>
             <Slider/>
-                {/* <div className={styles.product_detail_img}>
-                    <div className={styles.slider_controls_container}>
-
-                        {slides.map((slide, index) => (
-                            <div
-                                key={index}
-                                className={`${styles.slide} ${index === currentSlide ? styles.active : ""
-                                    }`}
-                                onClick={() => handleScroll(index)}
-                            >
-                                <img className={`${styles.slide} ${index === currentSlide ? styles.active_slide : ""
-                                    }`} src={slide} alt={`Slide ${index + 1}`} />
-                            </div>
-                        ))}
-
-                        <div className={styles.controls}>
-                            <button id="prevButton" onClick={prevSlide}>
-                                <img src={arrow_top} />
-                            </button>
-                            <button id="nextButton" onClick={nextSlide}>
-                                <img src={arrow_bottom} />
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className={styles.active_slide_container}>
-                        <img src={slides[currentSlide]} alt="Active Slide" />
-                    </div>
-                </div> */}
                 <div className={styles.product_descr}>
                     <h1 className={styles.descr_title}>{product?.title}</h1>
                     <div className={styles.rating_info}>

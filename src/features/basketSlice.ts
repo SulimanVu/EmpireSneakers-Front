@@ -20,7 +20,7 @@ const initialState = {
 export const fetchBasket = createAsyncThunk<BasketState, { id: string }>(
   "fetch/basket",
   async ({ id }, { rejectWithValue }) => {
-    console.log(id);
+    console.log(id, 'id');
     const res = await fetch(`http://localhost:3010/basket/${id}`);
     if (!res.ok) {
       return rejectWithValue("server error");
@@ -37,7 +37,7 @@ export const addToBasket = createAsyncThunk<
   { id: string; productId: string; size: number }
 >("add/basket", async ({ id, productId, size }, { rejectWithValue }) => {
   
-  console.log(id);
+ 
   const res = await fetch(`http://localhost:3010/basket/add/${id}`, {
     method: "PATCH",
     headers: {
@@ -45,6 +45,7 @@ export const addToBasket = createAsyncThunk<
     },
     body: JSON.stringify({ product: productId, size: size }),
   });
+  
   if (!res.ok) {
     return rejectWithValue("server error");
   }

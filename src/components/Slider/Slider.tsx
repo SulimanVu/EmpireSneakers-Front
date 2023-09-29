@@ -4,7 +4,7 @@ import arrow_bottom from "../../assets/icons/arrow_bottom.png"
 import arrow_top from "../../assets/icons/aroow_top.png"
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
-import { fetchOneProduct } from '../../features/productSlice';
+import { Product, fetchOneProduct } from '../../features/productSlice';
 
 
 
@@ -17,24 +17,9 @@ const Slider = () => {
     const dispatch = useAppDispatch()
     const product = useAppSelector(
         (state) => state.productSlice.oneProduct
-    )
-
-console.log(product);
+    ) as Product
 
 
-    // useEffect(() => {
-    //     id && dispatch(fetchOneProduct(id))
-        
-        
-    // }, [dispatch])
-
-
-
-    const slides: string[] = [
-        "https://fikiwiki.com/uploads/posts/2022-02/1644972802_1-fikiwiki-com-p-kartinki-krasivie-na-android-1.jpg",
-        "https://img1.akspic.ru/previews/7/4/7/9/6/169747/169747-ikanvas-art-pechat_na_holste-poster-oblako-500x.jpg",
-        "https://img3.akspic.ru/previews/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-500x.jpg",
-    ];
 
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
@@ -44,11 +29,11 @@ console.log(product);
     };
 
     const nextSlide = (): void => {
-        setCurrentSlide((currentSlide + 1) % slides.length);
+        setCurrentSlide((currentSlide + 1) %  product?.photo.length);
     };
 
     const prevSlide = (): void => {
-        setCurrentSlide((currentSlide - 1 + slides.length) % slides.length);
+        setCurrentSlide((currentSlide - 1 + product.photo.length) % product.photo.length);
     };
 
     const handleScroll = (index: React.MouseEvent<HTMLDivElement>): void => {
@@ -82,7 +67,7 @@ console.log(product);
                     </div>
 
                     <div className={styles.active_slide_container}>
-                        <img src={product?.photo[currentSlide]} alt="Active Slide" />
+                        <img src={`http://localhost:3010/${product?.photo[currentSlide]}`} alt="Active Slide" />
                     </div>
                 </div> 
   )
