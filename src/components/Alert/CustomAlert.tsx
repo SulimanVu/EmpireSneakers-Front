@@ -14,7 +14,6 @@ const CustomAlert = React.memo(
   ({ alert, message, setOpenAlert }: AlertProps) => {
     const time = alert === "error" ? 3000 : 900;
 
-    console.log("alert");
 
     setTimeout(() => {
       setOpenAlert(false);

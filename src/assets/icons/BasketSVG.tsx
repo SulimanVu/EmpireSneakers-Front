@@ -1,6 +1,6 @@
 import  { SVGProps } from 'react'
 
-const BusketSVG = (props:SVGProps<SVGSVGElement>) => {
+const BasketSVG = (props:SVGProps<SVGSVGElement>) => {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" fill="none">
     <path
@@ -13,4 +13,4 @@ const BusketSVG = (props:SVGProps<SVGSVGElement>) => {
   )
 }
 
-export default BusketSVG
+export default BasketSVG

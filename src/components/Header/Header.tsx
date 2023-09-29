@@ -21,6 +21,8 @@ const Header: FC = () => {
   const userId: string | null | undefined = useAppSelector(
     (state) => state.applicationSlice.userId
   );
+
+  
   const globalCategories = useAppSelector(
     (state) => state.globalCategory.globalCategories
   );
@@ -41,7 +43,7 @@ const Header: FC = () => {
     dispatch(fetchGlobalCategories());
   }, [dispatch]);
 
-  useEffect(() => {
+  useEffect(() => {        
     userId && dispatch(getUser({ id: userId }));
   }, [dispatch, userId]);
 
