@@ -10,6 +10,7 @@ import { addToBasket } from "../../features/basketSlice";
 import Slider from "../Slider/Slider";
 import PossibilitiesProduct from "../PossibilitesProduct/PossibilitiesProduct";
 import RatingInfo from "../RatingInfo/RatingInfo";
+import SimilarProducts from "../SimilarProducts/SimilarProducts";
 
 
 const ProductDetail: React.FC = () => {
@@ -34,6 +35,7 @@ const ProductDetail: React.FC = () => {
             size: 42
         }));
     };
+    
 
     return (
         <>
@@ -60,6 +62,7 @@ const ProductDetail: React.FC = () => {
                     <PossibilitiesProduct/>
                 </div>
             </div>
+            <SimilarProducts/>
         </>
     );
 };
