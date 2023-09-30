@@ -20,13 +20,14 @@ const initialState = {
 export const fetchBasket = createAsyncThunk<BasketState, { id: string }>(
   "fetch/basket",
   async ({ id }, { rejectWithValue }) => {
-    console.log(id, 'id');
+   if(id) {
     const res = await fetch(`http://localhost:3010/basket/${id}`);
     if (!res.ok) {
-      return rejectWithValue("server error");
+      return rejectWithValue({ _id: "", basket: [] });
     }
 
     return res.json();
+   }
   }
 );
 
@@ -34,20 +35,19 @@ export const fetchBasket = createAsyncThunk<BasketState, { id: string }>(
 
 export const addToBasket = createAsyncThunk<
   BasketState,
-  { id: string; productId: string; size: number }
->("add/basket", async ({ id, productId, size }, { rejectWithValue }) => {
-  
- 
+  { id: string; product: string; size: number }
+>("add/basket", async ({ id, product, size }, { rejectWithValue }) => {
+    
   const res = await fetch(`http://localhost:3010/basket/add/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ product: productId, size: size }),
+    body: JSON.stringify({ product: product, size: size }),
   });
   
   if (!res.ok) {
-    return rejectWithValue("server error");
+    return rejectWithValue({ _id: "", basket: [] });
   }
   
   return res.json();
@@ -65,7 +65,7 @@ export const deleteInBasket = createAsyncThunk<
     body: JSON.stringify({ product, size }),
   });
   if (!res.ok) {
-    return rejectWithValue("server error");
+    return rejectWithValue({ _id: "", basket: [] });
   }
 
   return res.json();
@@ -87,6 +87,7 @@ const basketSlice = createSlice({
       .addCase(
         addToBasket.fulfilled,
         (state: BasketState, action: PayloadAction<BasketState>) => {
+          
           state.basket = action.payload.basket;
         }
       )

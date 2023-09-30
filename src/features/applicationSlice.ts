@@ -8,7 +8,7 @@ interface JwtParse {
 }
 
 export function parseJwt(token: string) {
-  if (token) {
+  if (token && token.includes(".")) { // Проверка на наличие точки в строке token
     const base64Url = token.split(".")[1];
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
     const jsonPayload = decodeURIComponent(
@@ -25,6 +25,7 @@ export function parseJwt(token: string) {
   }
   return null;
 }
+
 
 interface UsersState {
   user: User | null;

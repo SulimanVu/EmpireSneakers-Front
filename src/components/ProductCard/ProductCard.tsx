@@ -26,6 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({
   price,
   photo,
 }) => {
+
   const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.applicationSlice.userId);
@@ -83,7 +84,7 @@ const ProductCard: FC<ProductCardProps> = ({
           message={message}
         />
       )}
-      <div className={styles.product} onClick={()=> navigate(`/productDetail/${_id}`)}>
+      <div className={styles.product} onClick={() => navigate(`/productDetail/${_id}`)}>
         <div className={styles.productImg}>
           <img src={`http://localhost:3010/${photo[0]}`} alt="Футболка" />
         </div>

@@ -17,7 +17,7 @@ const BasketPage: FC = () => {
     user && dispatch(fetchBasket({ id: user.basket }));
   }, [user, dispatch]);
 
-  if (!basket.length) {
+  if ( basket === undefined || basket === null || !basket.length) {
     return <BasketEmpty />;
   }
   

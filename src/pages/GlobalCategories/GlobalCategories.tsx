@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useMemo } from "react";
 import styles from "./globalCategories.module.scss";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
@@ -25,6 +25,7 @@ const GlobalCategories: FC = () => {
   const filteredProducts = useMemo(() => {
     return products.filter((product) => product.globalCategory?._id === id);
   }, [products, id]);
+
 
   useEffect(() => {
     dispatch(fetchCategories());

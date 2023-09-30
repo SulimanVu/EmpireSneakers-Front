@@ -29,8 +29,7 @@ const BasketCard: FC<BasketCardProps> = ({ product, size }) => {
       deleteInBasket({ _id: user.basket, product: product._id, size: size })
     );
   };
-  console.log(product);
-  
+
   return (
     <div className={styles.basketCard}>
       <div className={styles.productDetails}>

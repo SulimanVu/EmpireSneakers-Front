@@ -1,0 +1,27 @@
+.possibilities_product {
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    justify-content: space-between;
+
+    div {
+      cursor: pointer;
+    }
+    span {
+      width: 100%;
+      color: #3c4242;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    svg {
+      margin-right: 15px;
+    }
+    .possibilities_product_inner > div {
+      display: flex;
+      align-items: center;
+    }
+  }
