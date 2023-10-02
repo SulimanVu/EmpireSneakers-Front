@@ -1,0 +1,26 @@
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+footer {
+    background: #3C4242;
+}
+.footer_inner {
+  padding: 60px 110px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+
+
+  .footer_info div {
+    margin-bottom: 15px;
+    font-family: Roboto;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 62px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}

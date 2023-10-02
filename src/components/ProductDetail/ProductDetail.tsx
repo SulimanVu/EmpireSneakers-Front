@@ -11,6 +11,7 @@ import Slider from "../Slider/Slider";
 import PossibilitiesProduct from "../PossibilitesProduct/PossibilitiesProduct";
 import RatingInfo from "../RatingInfo/RatingInfo";
 import SimilarProducts from "../SimilarProducts/SimilarProducts";
+import Footer from "../Footer/Footer";
 
 
 const ProductDetail: React.FC = () => {
@@ -63,6 +64,7 @@ const ProductDetail: React.FC = () => {
                 </div>
             </div>
             <SimilarProducts/>
+            <Footer/>
         </>
     );
 };
