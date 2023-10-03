@@ -5,14 +5,13 @@ li {
   list-style: none;
 }
 footer {
-    background: #3C4242;
+  background: #3c4242;
 }
 .footer_inner {
   padding: 60px 110px;
   display: flex;
   justify-content: space-between;
   color: white;
-
 
   .footer_info div {
     margin-bottom: 15px;
@@ -23,4 +22,86 @@ footer {
     letter-spacing: 0em;
     text-align: left;
   }
+
+  .footer_list li {
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 39px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+.footer_bottom_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0px 110px;
+  padding-bottom: 50px;
+  .footer_social li:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  .footer_social {
+    display: flex;
+    align-items: center;
+    .footer_social_icons {
+      width: 37px;
+      height: 37px;
+      background-color: #fff;
+      border-radius: 11px;
+    }
+    .footer_social_icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .footer_download {
+    .footer_download_title {
+      color: #fff;
+      font-family: Roboto;
+      font-size: 29px;
+      font-weight: 700;
+      line-height: 62px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    .footer_download_img {
+      display: flex;
+    }
+    .footer_download_img img {
+      margin-right: 20px;
+    }
+  }
+}
+
+.footer_bottom {
+  width: 1220px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 110px;
+  border-top: 1px solid #bebcbd;
+  border-bottom: 1px solid #bebcbd;
+
+  .footer_title {
+    color: #fff;
+    font-family: Roboto;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 57px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .arrow {
+    margin: auto 0;
+  }
+}
+.text_end {
+  text-align: center;
+  padding-bottom: 60px;
+  color: #fff;
 }

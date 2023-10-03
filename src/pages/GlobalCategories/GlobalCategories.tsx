@@ -10,6 +10,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { fetchFavorites } from "../../features/favoriteSlice";
 import FilterSVG from "../../assets/icons/FilterSVG";
 import PricePopUp from "../../components/PricePopUp/PricePopUp";
+import Footer from "../../components/Footer/Footer";
 
 const GlobalCategories: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +35,7 @@ const GlobalCategories: FC = () => {
   }, [dispatch, user]);
 
   return (
-    <div>
+    <>
       <Header />
       <main>
         <aside>
@@ -66,7 +67,8 @@ const GlobalCategories: FC = () => {
           )}
         </section>
       </main>
-    </div>
+      <Footer/>
+    </>
   );
 };
 

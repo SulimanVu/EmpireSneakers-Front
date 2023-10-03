@@ -36,7 +36,7 @@ const ProductDetail: React.FC = () => {
             size: 42
         }));
     };
-    
+
 
     return (
         <>
@@ -45,7 +45,7 @@ const ProductDetail: React.FC = () => {
                 <Slider />
                 <div className={styles.product_descr}>
                     <h1 className={styles.descr_title}>{product?.title}</h1>
-                    <RatingInfo/>
+                    <RatingInfo />
                     <div className={styles.product_size_title}>
                         <div className={styles.select_size}>Select Size</div>
                         <div className={styles.size_guide}>Size Guide</div>
@@ -60,10 +60,10 @@ const ProductDetail: React.FC = () => {
                         <div className={styles.cart_count}>₽{product?.price}</div>
                     </div>
                     <div className={styles.line}></div>
-                    <PossibilitiesProduct/>
+                    <PossibilitiesProduct />
                 </div>
             </div>
-            <SimilarProducts/>
+            <SimilarProducts />
             <Footer/>
         </>
     );
